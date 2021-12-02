@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import Login from './Login';
 import Inicio from './Inicio';
 import Registro from './Registro';
+import Dashboard from './Dashboard';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -13,6 +14,7 @@ ReactDOM.render(
       <Route exact path="/" element={<Inicio/>} />
       <Route path="/Login" element={<Login/>} />
       <Route path="/Registro" element={<Registro/>} />
+      <Route path="/Dashboard" element={<Dashboard/>} />
     </Routes>
   </Router>
 </React.StrictMode>
