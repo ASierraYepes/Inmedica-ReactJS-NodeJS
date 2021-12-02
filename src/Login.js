@@ -1,5 +1,6 @@
 import React from 'react'
 import Footer from './Components/Footer'
+import FormLogin from './Components/FormLogin'
 
 export default function Login() {
     return (
@@ -29,40 +30,10 @@ export default function Login() {
                     </div>
                 </nav>
             </header>
-            <div className="container" style={{"background-image": "url(img/fondo.jpg)"}}>
-                <div id="registro" className="row p-3 mb-2 text-dark">
-                    <div className="col-md-12 col-lg-4 mx-auto">
-                        <form action="">
-                            <div className="form-group ">
-                                <h3>Iniciar sesión</h3>
-                                <img src="img/microscopio2.png" className="d-block w-50 h-25 mx-auto" alt="img 1"/>
-                            </div>
-                            <div className="form-group">
-                                <label for="" className="form-label">Correo</label>
-                                <input type="email" className="form-control" id="mail" placeholder="Ingrese tu contraseña"/>
-                            </div>
-                            <div className="form-group">
-                                <label for="" className="form-label">Contraseña</label>
-                                <input type="password" className="form-control" id="tel" placeholder="Ingrese tu contraseña"/>
-                            </div>
-                            <div className="align-items-center">
-                                <div>
-                                    <label className="checkbox m-1">
-                                        <input type="checkbox" name=""/>
-                                        <span></span>Recuérdame</label>
-                                </div>
-                                <a href="">¿Has olvidado tu contraseña?</a>
-                            </div><br/>
-                            <div className="d-grid gap-2 d-md-block">
-                                <button className="btn btn-primary btn-block" type="button">Iniciar</button>
-                                <button className="btn btn-primary btn-block" type="button">Volver</button>
-                            </div>
-                            <div>
-                                <span>¿No tienes cuenta?</span>
-                                <a href="">¡Registrate!</a>
-                            </div>
-                            <br/>
-                        </form>
+            <div className="container col-md-12 col-lg-12 mx-auto" style={{"background-image": "url(img/fondo.jpg)"}}>
+                <div id="registro" className="row p-3 mb-2 text-dark col-md-12 col-lg-6 mx-auto">
+                    <div className="col-md-12 col-lg-6 mx-auto">
+                       <FormLogin/> 
                     </div>
                 </div>
             </div>
