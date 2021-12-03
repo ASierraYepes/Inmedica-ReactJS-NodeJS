@@ -1,13 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import Login from './Login';
+import Inicio from './Inicio';
+import Registro from './Registro';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Router>
+    <Routes>
+      <Route exact path="/" element={<Inicio/>} />
+      <Route path="/Login" element={<Login/>} />
+      <Route path="/Registro" element={<Registro/>} />
+    </Routes>
+  </Router>
+</React.StrictMode>
+,
   document.getElementById('root')
 );
 
