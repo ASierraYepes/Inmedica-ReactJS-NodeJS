@@ -16,6 +16,6 @@ export default function NavbarDashboard() {
                     <a href="#" className="d-block text-light p-3 border-0"> <i className="icon ion-md-person  lead mr-2"></i>Usuarios</a>
                 </div>
             </div>
-        </>
+        </> 
     )
 }
