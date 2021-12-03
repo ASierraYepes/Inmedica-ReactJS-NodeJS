@@ -35,7 +35,7 @@ export const data = {
   labels,
   datasets: [
     {
-      label: 'Dataset 1',
+      label: 'Resultados',
       data: labels.map(() => faker.datatype.number({ min: 0, max: 2000 })),
       backgroundColor: 'rgb(184, 28, 9, 0.6)',
     },
