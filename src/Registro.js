@@ -1,35 +1,35 @@
 import React from 'react'
+import { Link } from "react-router-dom";
 import Footer from './Components/Footer'
 import FormRegistro from './Components/FormRegistro'
 
 export default function Registro() {
     return (
-        <div>
+        <div style={{"background-image": "url(img/fondo.jpg)"}}>
             <header>
-                <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
-                    <div class="container-fluid">
-                    <a href="#"><img src="img/microscopio2.png" class="d-block  mx-auto" width="40" height="40" alt="img 1"/>
-                        <h6 class="text-light text-center font-weight-bold mb-0">INMEDICA</h6></a>                
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
+                <nav className="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+                    <div className="container-fluid">
+                        <Link to="/">
+                            <a><img src="img/microscopio2.png" className="d-block  mx-auto" width="40" height="40" alt="img 1" />
+                                <h6 className="text-light text-center font-weight-bold mb-0">INMEDICA</h6></a>
+                        </Link>
+                        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span className="navbar-toggler-icon"></span>
                         </button>
-                        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                            <ul class="navbar-nav">
-                                <li class="nav-item">
-                                    <a class="nav-link active" data-bss-hover-animate="pulse" href="#">Inicio</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link active" data-bss-hover-animate="pulse" href="#">Informacion y Comunicados</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link active" data-bss-hover-animate="pulse" href="#">Contacto</a>
-                                </li>
-                            </ul>
-                        </div>
+                    </div>
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <Link to="/">
+                                    <a class="nav-link active" data-bss-hover-animate="pulse">Inicio</a>
+                                </Link>
+                            </li>
+                        </ul>
                     </div>
                 </nav>
             </header>
-            <div className="container col-md-12 col-lg-12 mx-auto" style={{"background-image": "url(img/fondo.jpg)"}}> 
+            <div className="container col-md-12 col-lg-12 mx-auto"> 
                 <div id ="registro" className="row p-3 mb-2 text-dark col-md-12 col-lg-6 mx-auto">
                     <div className="col-md-12 col-lg-6 mx-auto">
                         <FormRegistro/>

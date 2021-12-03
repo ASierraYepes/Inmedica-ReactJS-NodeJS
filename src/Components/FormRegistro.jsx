@@ -1,11 +1,12 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function FormRegistro() {
     return (
         <>
             <form action="">
                 <div class="form-group ">
-                    <h3>Registro de Usuario</h3>
+                    <h3>Crear cuenta</h3>
                     <img src="img/microscopio2.png" class="d-block w-50 h-25 mx-auto" alt="img 1" />
                     <label for="" class="form-label">Tipo de Documento</label>
                     <select class="form-control">
@@ -43,8 +44,12 @@ export default function FormRegistro() {
                 </div>
 
                 <div class="d-grid gap-2 d-md-block">
-                    <button class="btn btn-primary btn-block" type="button" >Registrar</button>
-                    <button class="btn btn-primary btn-block" type="button" >Volver</button>
+                    <Link to="/">
+                        <button class="btn btn-primary btn-block" type="button" >Registrar</button>
+                    </Link>
+                    <Link to="/">
+                        <button class="btn btn-primary btn-block" style = {{"margin-top":"4px"}} type="button" >Volver</button>
+                    </Link>
                 </div>
                 <br />
             </form>

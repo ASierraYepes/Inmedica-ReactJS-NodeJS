@@ -1,6 +1,7 @@
 import React from 'react'
 
 export default function GraficoDashboard() {
+    
     return (
         <>
             <div class="card-body">

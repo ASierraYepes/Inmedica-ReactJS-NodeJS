@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function FormLogin() {
     return (
@@ -10,11 +11,11 @@ export default function FormLogin() {
                 </div>
                 <div className="form-group">
                     <label for="" className="form-label">Correo</label>
-                    <input type="email" className="form-control" id="mail" placeholder="Ingrese tu contraseña"/>
+                    <input type="email" className="form-control" id="mail" placeholder="Ingrese su correo"/>
                 </div>
                 <div className="form-group">
                     <label for="" className="form-label">Contraseña</label>
-                    <input type="password" className="form-control" id="tel" placeholder="Ingrese tu contraseña"/>
+                    <input type="password" className="form-control" id="tel" placeholder="Ingrese su contraseña"/>
                 </div>
                 <div className="align-items-center">
                     <div>
@@ -25,12 +26,18 @@ export default function FormLogin() {
                     <a href="">¿Has olvidado tu contraseña?</a>
                 </div><br/>
                 <div className="d-grid gap-2 d-md-block">
-                    <button className="btn btn-primary btn-block" type="button">Iniciar</button>
-                    <button className="btn btn-primary btn-block" type="button">Volver</button>
+                    <Link to="/">
+                        <button className="btn btn-primary btn-block" type="button">Iniciar</button>
+                    </Link>
+                    <Link to="/">
+                        <button className="btn btn-primary btn-block" style = {{"margin-top":"4px"}}type="button">Volver</button>
+                    </Link> 
                 </div>
                 <div>
                     <span>¿No tienes cuenta?</span>
-                    <a href="">¡Registrate!</a>
+                    <Link to="/Registro">
+                        <a >¡Registrate!</a>
+                    </Link>
                 </div>
                 <br/>
             </form>

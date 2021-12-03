@@ -44,10 +44,19 @@ a:hover {
     width: 18rem;
 }
 
-#content {
+#Contenido {
     overflow-y: auto;
     height: 100vh;
     padding-bottom: 5rem;
+}
+
+#Estadistica{
+    text-align: left;
+}
+
+#TituloDash{
+    margin-top:5px;
+    
 }
 
 .btn-search {
