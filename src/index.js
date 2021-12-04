@@ -6,6 +6,7 @@ import Login from './Login';
 import Inicio from './Inicio';
 import Registro from './Registro';
 import Dashboard from './Dashboard';
+import Usuarios from './Usuarios';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -15,6 +16,7 @@ ReactDOM.render(
       <Route path="/Login" element={<Login/>} />
       <Route path="/Registro" element={<Registro/>} />
       <Route path="/Dashboard" element={<Dashboard/>} />
+      <Route path="/Usuarios" element={<Usuarios/>} />
     </Routes>
   </Router>
 </React.StrictMode>
