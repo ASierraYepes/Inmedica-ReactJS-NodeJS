@@ -1,7 +1,6 @@
-Datatable
-npm i react-data-table-component
-npm i --save @fortawesome/fontawesome-svg-core  @fortawesome/free-solid-svg-icons @fortawesome/react-fontawesome
+Datatable-react
+npm i react-data-table-component styled-components
 
-barGraphic
+barGraphic-react
 npm install --save chart.js react-chartjs-2
 npm i faker 
