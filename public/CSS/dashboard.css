@@ -55,8 +55,14 @@ a:hover {
 }
 
 #TituloDash{
-    margin-top:5px;
-    
+    margin-top: 5px;
+    /* margin-left: px; */
+}
+
+#GraficoDash{
+    margin-top: 5px;
+    margin-left: -14px;
+    width: 102.7%;
 }
 
 .btn-search {
@@ -76,4 +82,3 @@ a:hover {
         border: 0;
     }
   }
-  

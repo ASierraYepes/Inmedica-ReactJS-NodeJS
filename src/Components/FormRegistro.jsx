@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 export default function FormRegistro() {
+    
     return (
         <>
             <form action="">
@@ -45,7 +46,7 @@ export default function FormRegistro() {
 
                 <div class="d-grid gap-2 d-md-block">
                     <Link to="/">
-                        <button class="btn btn-primary btn-block" type="button" >Registrar</button>
+                        <button class="btn btn-primary btn-block" type="button">Registrar</button>
                     </Link>
                     <Link to="/">
                         <button class="btn btn-primary btn-block" style = {{"margin-top":"4px"}} type="button" >Volver</button>

@@ -13,7 +13,6 @@ export default function Dashboard() {
                 <NavbarDashboard/>
                 <div className="w-100">
                     <NavUpDashboard/>
-
                     <div id="Contenido" className="bg-grey w-100">
                         <section className="bg-light py-3">
                             <div className="">
@@ -24,22 +23,19 @@ export default function Dashboard() {
                                 </div>
                             </div>
                         </section>
-
                         <EstadisticaDashboard/>
-
                         <section>
                             <div className="container">
-                                <div className="row">
-                                    <div className="col-lg-8 my-3">
+                                <div className="row" id="GraficoDash">
+                                    <div className="col-lg-7 my-3">
                                         <div className="card rounded-1">
                                             <div className="card-header bg-light">
                                                 <h6 className="font-weight-bold mb-0">Promedio entregas de resultados anual 2020</h6>
                                             </div>
-                                            {/* El grafico ya contiene el Scrip */}
                                             <GraficoDashboard/>
                                         </div>
                                     </div>
-                                    <div className="col-lg-4 my-3">
+                                    <div className="col-lg-5 my-3">
                                         <div className="card rounded-1">
                                             <ExamsDashboard/>
                                         </div>
@@ -53,4 +49,4 @@ export default function Dashboard() {
             <Footer/>
         </div>
     )
-}
+} 
