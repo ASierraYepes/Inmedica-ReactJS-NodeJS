@@ -9,13 +9,13 @@ export default function FormRegistro() {
                     <h3>Crear cuenta</h3>
                     <img src="img/microscopio2.png" class="d-block w-50 h-25 mx-auto" alt="img 1" />
                     <label for="" class="form-label">Tipo de Documento</label>
-                    <select class="form-control">
+                    <select id="typeDoc" class="form-control">
                         <option selected>Elija el Tipo de Documento</option>
                         <option value="1">Cedula Ciudadania</option>
                         <option value="2">Tarjeta de Identidad</option>
                         <option value="3">Registro Civil</option>
-                        <option value="4">Pasaporte</option>
-                        <option value="5">Extranjeria</option>
+                        <option value="4">DNI(Pasaporte)</option>
+                        <option value="5">Cedula Extranjeria</option>
                     </select>
                 </div>
                 <div class="form-group">

@@ -12,7 +12,7 @@ export default function NavUpDashboard() {
 
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <form className="form-inline position-relative d-inline-block my-2">
-                            <input className="form-control" type="search" placeholder="Buscar" aria-label="Buscar"/>
+                            <input className="form-control" type="text" placeholder="Buscar" aria-label="Buscar"/>
                             <button className ="btn position-absolute btn-search" type ="submit"><i className ="icon ion-md-search"></i></button>
                         </form>
                         <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
