@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function NavUpDashboard() {
     return (
@@ -22,9 +23,13 @@ export default function NavUpDashboard() {
                                     <i className="icon ion-md-person mr-2"></i>Administrador
                                 </a>
                                 <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a className="dropdown-item" href="#">Perfil</a>
+                                    <Link to="" className="dropdown-item">
+                                        <a><i className="icon ion-ios-people"></i> Perfil</a>
+                                    </Link>
                                     <div className="dropdown-divider"></div>
-                                    <a className="dropdown-item" href="#">Cerrar sesión</a>
+                                    <Link to="" className="dropdown-item">
+                                        <a><i className="icon ion-ios-log-out"></i> Cerrar sesión</a>
+                                    </Link>
                                 </div>
                             </li>
                         </ul>
