@@ -1,12 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import App from './App';
+import Consultah from './Consultah';
+/*import '../%PUBLIC_URL%/css/bootstrap.min.css';
+import '../%PUBLIC_URL%/js/bootstrap.bundle.min.js';*/
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Router>
+      <Routes>
+        <Route exact path="/" element={<App/>} />
+        <Route path="/consultah" element={<Consultah/>} />
+        <Route path="/consultae" element={<Consultah/>} />
+      </Routes>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );
