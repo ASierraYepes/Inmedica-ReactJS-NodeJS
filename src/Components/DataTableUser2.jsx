@@ -33,7 +33,7 @@ const DataTableUser2 = (props) => {
                                 <h6 className="font-weight-bold mb-0">Tabla general de usuarios registrados</h6>
                             </div>
                             <div className="table-responsive tabla">
-                                <table class="text-dark table-bordered" pagination={true}>
+                                <table class="text-dark table-bordered" >
                                     <thead>
                                         <td>Tipo de documento</td>
                                         <td>Documento</td>
