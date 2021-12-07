@@ -8,9 +8,9 @@ export default function Usuarios() {
     const [usersAPI, setUsersAPI] = React.useState([]);
 
     React.useEffect(() => {
-        fetch('http://localhost:3000/users')
+        fetch("users.json")
         .then(response => response.json())
-        .then(data => setUsersAPI(data));
+        .then(data => setUsersAPI(data.users));
     }, [])
 
     return (
