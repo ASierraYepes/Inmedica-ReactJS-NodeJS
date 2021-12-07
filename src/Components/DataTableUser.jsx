@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import DataTable from 'react-data-table-component';
 import { Link } from 'react-router-dom'
-import users from "../API/users.json";
+// import users from "../API/users.json";
 
 
 // export function getApiData() {
@@ -16,8 +16,14 @@ import users from "../API/users.json";
 // });
 
 
-const tablaUsuarios = users.users;
+// const tablaUsuarios = users.users;
 const columnas = [
+    {
+		cell: () => <button onClick={clickHandler}>Action</button>,
+		ignoreRowClick: true,
+		allowOverflow: true,
+		button: true,
+	},
     {
         name: "Tipo de documento",
         selector: "typeDoc",
@@ -84,7 +90,7 @@ class DataTableUser extends Component {
     }
 
     filtrarElementos = () => {
-        var search = tablaUsuarios.filter(item => {
+        var search = this.state.usuarios.filter(item => {
             if (item.doc.toString().includes(this.state.busqueda) ||
                 item.nom.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "").includes(this.state.busqueda) || /*(Normalize): es para quitar la expresion de los acentos*/
                 item.mail.toLowerCase().includes(this.state.busqueda) ||
@@ -93,13 +99,18 @@ class DataTableUser extends Component {
                 return item;
             }
         });
-        this.setState({ usuarios: search });
+        this.setState({ usuariosTabla: search });
     }
 
     componentDidMount() {
-        this.setState({ usuarios: tablaUsuarios });
+        fetch("users.json")
+        .then(res => res.json())
+        .then(data => this.setState({ usuarios: data.users, usuariosTabla : data.users }));
+
+        
     }
 
+    /* Agregas funciones para el CRUD */
 
 
     
@@ -146,7 +157,7 @@ class DataTableUser extends Component {
                                         </div>
                                         <DataTable
                                             columns={columnas}
-                                            data={this.state.usuarios}
+                                            data={this.state.usuariosTabla}
                                             pagination
                                             paginationComponentOptions={paginationOpciones}
                                             fixedHeader
