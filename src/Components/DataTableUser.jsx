@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
 import DataTable from 'react-data-table-component';
 import { Link } from 'react-router-dom'
-// import users from "../API/users.json";
+import users from "../API/users.json";
 
 
-export function getApiData() {
-    return fetch('http://localhost:3000/users')
-        .then((data) => data.json())
-        .then((res) => res)
-}
+// export function getApiData() {
+//     return fetch('http://localhost:3000/users')
+//         .then((data) => data.json())
+//         .then((res) => res)
+// }
 
-getApiData().then(res => {
-    console.log(data);
-    this.setState({ result: data })
-});
+// getApiData().then(res => {
+//     console.log(data);
+//     this.setState({ result: data })
+// });
 
 
-// const tablaUsuarios = users.users;
+const tablaUsuarios = users.users;
 const columnas = [
     {
         name: "Tipo de documento",
@@ -63,6 +63,17 @@ const paginationOpciones = {
 }
 
 class DataTableUser extends Component {
+
+    // const [usersAPI, setUsersAPI] = useState([]);
+
+    // useEffect(() => {
+    //     fetch("../API/users.json")
+    //     .then(res => res.json())
+    //     .then(data => setUsersAPI(data));
+    // }, []);
+
+
+
     state = {
         busquedas: ""
     }
