@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import DataTable from 'react-data-table-component';
-import { Link } from 'react-router-dom'
+
+
 
 // import users from "../API/users.json";
 
@@ -18,7 +19,7 @@ import { Link } from 'react-router-dom'
 
 
 // const tablaUsuarios = users.users;
-const columnas = [
+const columnas = ( clickDelete => [
     {
         name: "Tipo de documento",
         selector: "typeDoc",
@@ -55,13 +56,12 @@ const columnas = [
         sortable: true
     },
     {
-        // cell:(row) => <button onClick={clickHandler} id={row.ID}>Action</button>,
-		// allowOverflow: false,
-		// button: true,
-		// width: '56px',
-
+        cell: (row) => <button onClick={clickDelete} id={ row.doc } className="btn btn-outline-primary"><i className="icon ion-md-trash"></i></button>,      
+        ignoreRowClick: true,
+        allowOverflow: true,
+        button: true,
 	},
-];
+]);
 
 const paginationOpciones = {
     rowsPerPageTex: "Filas por página",
@@ -100,6 +100,15 @@ class DataTableUser extends React.Component {
         .then(data => this.setState({ usuarios: data.users, usuariosTabla : data.users }));   
     }
 
+    handleButtonClick = (state) => {
+        console.log('clicked');
+    };
+    handleChange = state => {
+        console.log('state', state.selectedRows);
+
+        this.setState({ selectedRows: state.selectedRows });
+    };
+
     /* Agregas funciones para el CRUD */
 
 
@@ -136,9 +145,20 @@ class DataTableUser extends React.Component {
                                     </div> */}
 
                                     <div>
-                                        <button type="button" class="btn btn-primary modaladd" data-toggle="modal" data-target="#exampleModal">
-                                            +
+                                        <button type="button" 
+                                            className="btn btn-outline-primary modaladd" 
+                                            data-toggle="modal" 
+                                            data-target="#exampleModaladd">
+                                                <i className="icon ion-md-add"></i>
+                                        </button>{" "}
+
+                                        <button type="button" 
+                                            className="btn btn-outline-primary" 
+                                            data-toggle="modal" 
+                                            data-target="#exampleModaledit">
+                                                <i className="ion-md-refresh"></i>
                                         </button>
+                                        
                                     </div>
 
                                     <div className="card-header bg-light">
@@ -158,7 +178,7 @@ class DataTableUser extends React.Component {
  
 
                                         <DataTable
-                                            columns={columnas}
+                                            columns={columnas (this.handleButtonClick)}
                                             data={this.state.usuariosTabla}
                                             pagination
                                             paginationComponentOptions={paginationOpciones}
@@ -167,14 +187,15 @@ class DataTableUser extends React.Component {
                                             noDataComponent={<span>No se encontró ningún elemento</span>}
                                             highlightOnHover
 		                                    pointerOnHover
+                                            onRowSelected={this.handleChange}
                                         />
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    {/* Modal */}
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    {/* Modal add*/}
+                    <div class="modal fade" id="exampleModaladd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -225,6 +246,63 @@ class DataTableUser extends React.Component {
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                                     <button type="button" class="btn btn-primary">Agregar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {/* Modal edit*/}
+                    <div class="modal fade" id="exampleModaledit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title " id="exampleModalLabel">Agregar usuario</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                <form action="">
+                                    <div class="form-group ">
+                                        <label for="" class="form-label">Tipo de Documento</label>
+                                        <select id="typeDoc" class="form-control">
+                                            <option selected>Elija el Tipo de Documento</option>
+                                            <option value="1">Cedula Ciudadania</option>
+                                            <option value="2">Tarjeta de Identidad</option>
+                                            <option value="3">Registro Civil</option>
+                                            <option value="4">DNI(Pasaporte)</option>
+                                            <option value="5">Cedula Extranjeria</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="form-label">No. Documento</label>
+                                        <input type="number" class="form-control" id="doc" placeholder="# Documento" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Nombre Completo</label>
+                                        <input type="text" class="form-control" id="nom" placeholder="Nombre Completo" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Correo</label>
+                                        <input type="email" class="form-control" id="mail" placeholder="name@example.com" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Telefono</label>
+                                        <input type="number" class="form-control" id="tel" placeholder="# Telefono" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Direccion Residencia</label>
+                                        <input type="number" class="form-control" id="dir" placeholder="Direccion Residencia" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Fecha Nacimiento</label>
+                                        <input type="date" class="form-control" id="datetime" placeholder="yyyy-mm-dd" />
+                                    </div>
+                                </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary">Consultar</button>
+                                    <button type="button" class="btn btn-primary">Editar</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>                                   
                                 </div>
                             </div>
                         </div>
