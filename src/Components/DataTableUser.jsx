@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import DataTable from 'react-data-table-component';
 import { Link } from 'react-router-dom'
+
 // import users from "../API/users.json";
 
 
@@ -18,12 +19,6 @@ import { Link } from 'react-router-dom'
 
 // const tablaUsuarios = users.users;
 const columnas = [
-    {
-		cell: () => <button onClick={clickHandler}>Action</button>,
-		ignoreRowClick: true,
-		allowOverflow: true,
-		button: true,
-	},
     {
         name: "Tipo de documento",
         selector: "typeDoc",
@@ -59,6 +54,13 @@ const columnas = [
         selector: "datetime",
         sortable: true
     },
+    {
+        // cell:(row) => <button onClick={clickHandler} id={row.ID}>Action</button>,
+		// allowOverflow: false,
+		// button: true,
+		// width: '56px',
+
+	},
 ];
 
 const paginationOpciones = {
@@ -68,17 +70,7 @@ const paginationOpciones = {
     selectAllRowsItemText: "Todos"
 }
 
-class DataTableUser extends Component {
-
-    // const [usersAPI, setUsersAPI] = useState([]);
-
-    // useEffect(() => {
-    //     fetch("../API/users.json")
-    //     .then(res => res.json())
-    //     .then(data => setUsersAPI(data));
-    // }, []);
-
-
+class DataTableUser extends React.Component {
 
     state = {
         busquedas: ""
@@ -105,12 +97,11 @@ class DataTableUser extends Component {
     componentDidMount() {
         fetch("users.json")
         .then(res => res.json())
-        .then(data => this.setState({ usuarios: data.users, usuariosTabla : data.users }));
-
-        
+        .then(data => this.setState({ usuarios: data.users, usuariosTabla : data.users }));   
     }
 
     /* Agregas funciones para el CRUD */
+
 
 
     
@@ -125,11 +116,12 @@ class DataTableUser extends Component {
                                     {/* <Link to="">
                                         <button className="btn btn-add" type="submit"><i className="icon ion-md-add"></i> Agregar</button>
                                     </Link> */}
-                                    <div className="dropdown btn-action">
+                                    {/* <div className="dropdown btn-action">
                                         <a className="text-dark dropdown-toggle" href="#" id=""
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i className="icon ion-ios-settings"></i> Acción
                                         </a>
+                                        
                                         <div className="dropdown-menu btn-action" aria-labelledby="navbarDropdown">
                                             <Link to="/Dashboard" className="dropdown-item">
                                                 <a><i className="icon ion-md-person-add"></i> Agregar</a>
@@ -141,7 +133,14 @@ class DataTableUser extends Component {
                                                 <a><i className="icon ion-ios-trash"></i> Eliminar</a>
                                             </Link>                                        
                                         </div>
+                                    </div> */}
+
+                                    <div>
+                                        <button type="button" class="btn btn-primary modaladd" data-toggle="modal" data-target="#exampleModal">
+                                            +
+                                        </button>
                                     </div>
+
                                     <div className="card-header bg-light">
                                         <h6 className="font-weight-bold mb-0">Tabla general de usuarios registrados</h6>
                                     </div>
@@ -155,6 +154,9 @@ class DataTableUser extends Component {
                                                 onChange={this.onChange}
                                             />
                                         </div>
+                                        
+ 
+
                                         <DataTable
                                             columns={columnas}
                                             data={this.state.usuariosTabla}
@@ -163,8 +165,66 @@ class DataTableUser extends Component {
                                             fixedHeader
                                             fixedHeaderScrollHeight="600px"
                                             noDataComponent={<span>No se encontró ningún elemento</span>}
+                                            highlightOnHover
+		                                    pointerOnHover
                                         />
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {/* Modal */}
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title " id="exampleModalLabel">Agregar usuario</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                <form action="">
+                                    <div class="form-group ">
+                                        <label for="" class="form-label">Tipo de Documento</label>
+                                        <select id="typeDoc" class="form-control">
+                                            <option selected>Elija el Tipo de Documento</option>
+                                            <option value="1">Cedula Ciudadania</option>
+                                            <option value="2">Tarjeta de Identidad</option>
+                                            <option value="3">Registro Civil</option>
+                                            <option value="4">DNI(Pasaporte)</option>
+                                            <option value="5">Cedula Extranjeria</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="form-label">No. Documento</label>
+                                        <input type="number" class="form-control" id="doc" placeholder="# Documento" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Nombre Completo</label>
+                                        <input type="text" class="form-control" id="nom" placeholder="Nombre Completo" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Correo</label>
+                                        <input type="email" class="form-control" id="mail" placeholder="name@example.com" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Telefono</label>
+                                        <input type="number" class="form-control" id="tel" placeholder="# Telefono" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Direccion Residencia</label>
+                                        <input type="number" class="form-control" id="dir" placeholder="Direccion Residencia" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Fecha Nacimiento</label>
+                                        <input type="date" class="form-control" id="datetime" placeholder="yyyy-mm-dd" />
+                                    </div>
+                                </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    <button type="button" class="btn btn-primary">Agregar</button>
                                 </div>
                             </div>
                         </div>
