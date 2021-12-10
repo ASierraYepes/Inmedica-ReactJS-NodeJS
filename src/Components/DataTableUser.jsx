@@ -19,7 +19,7 @@ import DataTable from 'react-data-table-component';
 
 
 // const tablaUsuarios = users.users;
-const columnas = ( clickDelete => [
+const columnas = ( clickHandle => [
     {
         name: "Tipo de documento",
         selector: "typeDoc",
@@ -56,7 +56,7 @@ const columnas = ( clickDelete => [
         sortable: true
     },
     {
-        cell: (row) => <button onClick={clickDelete} id={ row.doc } className="btn btn-outline-primary"><i className="icon ion-md-trash"></i></button>,      
+        cell: (row) => <button onClick={clickHandle} id={ row.doc } className="btn btn-outline-primary"><i className="icon ion-md-trash"></i></button>,      
         ignoreRowClick: true,
         allowOverflow: true,
         button: true,
@@ -122,6 +122,7 @@ class DataTableUser extends React.Component {
                         <div className="row" id="GraficoDash">
                             <div className="col-lg-12 my-3">
                                 <div className="card rounded-1">
+
                                     {/* <Link to="">
                                         <button className="btn btn-add" type="submit"><i className="icon ion-md-add"></i> Agregar</button>
                                     </Link> */}
@@ -149,14 +150,14 @@ class DataTableUser extends React.Component {
                                             className="btn btn-outline-primary modaladd" 
                                             data-toggle="modal" 
                                             data-target="#exampleModaladd">
-                                                <i className="icon ion-md-add"></i>
+                                                <i className="ion-md-add"></i>
                                         </button>{" "}
 
                                         <button type="button" 
                                             className="btn btn-outline-primary" 
                                             data-toggle="modal" 
                                             data-target="#exampleModaledit">
-                                                <i className="ion-md-refresh"></i>
+                                                <i className="ion-ios-refresh"></i>
                                         </button>
                                         
                                     </div>
@@ -195,7 +196,12 @@ class DataTableUser extends React.Component {
                         </div>
                     </div>
                     {/* Modal add*/}
-                    <div class="modal fade" id="exampleModaladd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" 
+                        id="exampleModaladd" 
+                        tabindex="-1" 
+                        role="dialog" 
+                        aria-labelledby="exampleModalLabel" 
+                        aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -245,17 +251,22 @@ class DataTableUser extends React.Component {
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                    <button type="button" class="btn btn-primary">Agregar</button>
+                                    <button type="button" class="btn btn-primary" onClick={""}>Agregar</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                     {/* Modal edit*/}
-                    <div class="modal fade" id="exampleModaledit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" 
+                        id="exampleModaledit" 
+                        tabindex="-1" 
+                        role="dialog" 
+                        aria-labelledby="exampleModalLabel" 
+                        aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title " id="exampleModalLabel">Agregar usuario</h5>
+                                    <h5 class="modal-title " id="exampleModalLabel">Editar usuario</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -300,8 +311,8 @@ class DataTableUser extends React.Component {
                                 </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary">Consultar</button>
-                                    <button type="button" class="btn btn-primary">Editar</button>
+                                    <button type="button" class="btn btn-primary" onClick={""}>Consultar</button>
+                                    <button type="button" class="btn btn-primary" onClick={""}>Editar</button>
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>                                   
                                 </div>
                             </div>
