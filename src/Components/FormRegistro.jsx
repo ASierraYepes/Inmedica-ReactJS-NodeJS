@@ -22,13 +22,17 @@ export default function FormRegistro() {
                     <label for="" class="form-label">No. Documento</label>
                     <input type="number" class="form-control" id="doc" placeholder="# Documento" />
                 </div>
-                <div class="form-group">
+                <div class="form-group"> 
                     <label for="" class="form-label">Nombre Completo</label>
                     <input type="text" class="form-control" id="nom" placeholder="Nombre Completo" />
                 </div>
                 <div class="form-group">
                     <label for="" class="form-label">Correo</label>
                     <input type="email" class="form-control" id="mail" placeholder="name@example.com" />
+                </div>
+                <div className="form-group">
+                    <label for="" className="form-label">Contraseña</label>
+                    <input type="password" className="form-control" id="pass" placeholder="Ingrese su contraseña"/>
                 </div>
                 <div class="form-group">
                     <label for="" class="form-label">Telefono</label>

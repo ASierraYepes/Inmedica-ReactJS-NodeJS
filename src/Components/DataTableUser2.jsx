@@ -32,8 +32,8 @@ const DataTableUser2 = (props) => {
                             <div className="card-header bg-light">
                                 <h6 className="font-weight-bold mb-0">Tabla general de usuarios registrados</h6>
                             </div>
-                            <div className="table-responsive tabla">
-                                <table class="text-dark table-bordered" >
+                            <div className="tabla">
+                                <table class="text-dark table-bordered tablasim" >
                                     <thead>
                                         <td>Tipo de documento</td>
                                         <td>Documento</td>
