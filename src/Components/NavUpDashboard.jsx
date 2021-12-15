@@ -18,7 +18,7 @@ export default function NavUpDashboard() {
                         </form>
                         <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
                             <li className="nav-item dropdown">
-                                <a className="nav-link text-dark dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                <a className="nav-link text-dark dropdown-toggle" id="navbarDropdown" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i className="icon ion-md-person mr-2"></i>Administrador
                                 </a>

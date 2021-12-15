@@ -36,6 +36,7 @@ export default function EstadisticaDashboard() {
                                         <h6 className="text-success"><i className="icon ion-md-arrow-dropup-circle"></i> 75.50%</h6>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>

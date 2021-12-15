@@ -1,27 +1,25 @@
-import React, { Component } from 'react';
+import React from 'react';
 import DataTable from 'react-data-table-component';
-import { Link } from 'react-router-dom'
 
-const tablaUsuarios = [
-    { typeDoc: "Cedula Ciudadania", doc: 65432, nom: "Andres Sierra", mail: "andres@example.com", tel: "345678", dir: "cl 100 34-54", datetime: "30/03/94" },
-    { typeDoc: "Cedula Ciudadania", doc: 12345, nom: "Eldildo Mercado", mail: "edildo@example.com", tel: "536368", dir: "cra 56 4-3", datetime: "12/02/95" },
-    { typeDoc: "Cedula Ciudadania", doc: 76532, nom: "Harold Combita", mail: "harold@example.com", tel: "986555", dir: "cra 3 4-66", datetime: "1/06/64" },
-    { typeDoc: "Cedula Ciudadania", doc: 13456, nom: "Jose Martinez", mail: "jose@example.com", tel: "456573", dir: "cl 34 5-65", datetime: "5/10/80" },
-    { typeDoc: "Cedula Ciudadania", doc: 96566, nom: "Oscar Barajas", mail: "oscar@example.com", tel: "345578", dir: "cra 3 5-14", datetime: "23/04/76" },
-    { typeDoc: "Cedula Ciudadania", doc: 12357, nom: "Alexandra Camargo", mail: "alex@example.com", tel: "444222", dir: "cra 34 65-655", datetime: "12/12/94" },
-    { typeDoc: "Tarjeta de identidad", doc: 59800, nom: "Miguel Gutierrez", mail: "miguel@example.com", tel: "234567", dir: "cra 123 345-345", datetime: "30/03/94" },
-    { typeDoc: "Tarjeta de identidad", doc: 76767, nom: "Rosa Guerrero", mail: "rosa@example.com", tel: "986754", dir: "cl 43 23-66", datetime: "04/03/20" },
-    { typeDoc: "Tarjeta de identidad", doc: 54778, nom: "Felipe Yepes", mail: "felipe@example.com", tel: "977554", dir: "dig 45 55-322", datetime: "30/02/19" },
-    { typeDoc: "Cedula Ciudadania", doc: 53266, nom: "Juan Rojas", mail: "juan@example.com", tel: "224678", dir: "cl 99 67-44", datetime: "06/03/80" },
-    { typeDoc: "Cedula Extranjeria", doc: 12333, nom: "Raul Simanca", mail: "Raul@example.com", tel: "886543", dir: "cra 33 67-86", datetime: "08/11/86" },
-    { typeDoc: "Cedula Extranjeria", doc: 69645, nom: "Vanessa Roa", mail: "vane@example.com", tel: "555788", dir: "cra 86 35-67", datetime: "26/09/60" },
-    { typeDoc: "Cedula Ciudadania", doc: 12131, nom: "Ivan Char", mail: "ivan@example.com", tel: "245679", dir: "cl 13 56-234", datetime: "37/01/94" },
-    { typeDoc: "Cedula Ciudadania", doc: 65421, nom: "Pablo Bosé", mail: "pablo@example.com", tel: "765654", dir: "cl 64 21-67", datetime: "28/06/95" },
-    { typeDoc: "Cedula Ciudadania", doc: 68764, nom: "Jhony Perez", mail: "jhony@example.com", tel: "345689", dir: "cl 34 5-63", datetime: "17/05/99" },
 
-];
 
-const columnas = [
+// import users from "../API/users.json";
+
+
+// export function getApiData() {
+//     return fetch('http://localhost:3000/users')
+//         .then((data) => data.json())
+//         .then((res) => res)
+// }
+
+// getApiData().then(res => {
+//     console.log(data);
+//     this.setState({ result: data })
+// });
+
+
+// const tablaUsuarios = users.users;
+const columnas = ( clickHandle => [
     {
         name: "Tipo de documento",
         selector: "typeDoc",
@@ -57,7 +55,13 @@ const columnas = [
         selector: "datetime",
         sortable: true
     },
-];
+    {
+        cell: (row) => <button onClick={clickHandle} id={ row.doc } className="btn btn-outline-primary"><i className="icon ion-md-trash"></i></button>,      
+        ignoreRowClick: true,
+        allowOverflow: true,
+        button: true,
+	},
+]);
 
 const paginationOpciones = {
     rowsPerPageTex: "Filas por página",
@@ -66,7 +70,8 @@ const paginationOpciones = {
     selectAllRowsItemText: "Todos"
 }
 
-class DataTableUser extends Component {
+class DataTableUser extends React.Component {
+
     state = {
         busquedas: ""
     }
@@ -77,7 +82,7 @@ class DataTableUser extends Component {
     }
 
     filtrarElementos = () => {
-        var search = tablaUsuarios.filter(item => {
+        var search = this.state.usuarios.filter(item => {
             if (item.doc.toString().includes(this.state.busqueda) ||
                 item.nom.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "").includes(this.state.busqueda) || /*(Normalize): es para quitar la expresion de los acentos*/
                 item.mail.toLowerCase().includes(this.state.busqueda) ||
@@ -86,13 +91,29 @@ class DataTableUser extends Component {
                 return item;
             }
         });
-        this.setState({ usuarios: search });
+        this.setState({ usuariosTabla: search });
     }
 
     componentDidMount() {
-        this.setState({ usuarios: tablaUsuarios });
+        fetch("users.json")
+        .then(res => res.json())
+        .then(data => this.setState({ usuarios: data.users, usuariosTabla : data.users }));   
     }
 
+    handleButtonClick = (state) => {
+        console.log('clicked');
+    };
+    handleChange = state => {
+        console.log('state', state.selectedRows);
+
+        this.setState({ selectedRows: state.selectedRows });
+    };
+
+    /* Agregas funciones para el CRUD */
+
+
+
+    
     render() {
         return (
             <>
@@ -101,14 +122,16 @@ class DataTableUser extends Component {
                         <div className="row" id="GraficoDash">
                             <div className="col-lg-12 my-3">
                                 <div className="card rounded-1">
+
                                     {/* <Link to="">
                                         <button className="btn btn-add" type="submit"><i className="icon ion-md-add"></i> Agregar</button>
                                     </Link> */}
-                                    <div className="dropdown btn-action">
+                                    {/* <div className="dropdown btn-action">
                                         <a className="text-dark dropdown-toggle" href="#" id=""
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i className="icon ion-ios-settings"></i> Acción
                                         </a>
+                                        
                                         <div className="dropdown-menu btn-action" aria-labelledby="navbarDropdown">
                                             <Link to="/Dashboard" className="dropdown-item">
                                                 <a><i className="icon ion-md-person-add"></i> Agregar</a>
@@ -118,18 +141,33 @@ class DataTableUser extends Component {
                                             </Link>
                                             <Link to="" className="dropdown-item">
                                                 <a><i className="icon ion-ios-trash"></i> Eliminar</a>
-                                            </Link>
-                                            
+                                            </Link>                                        
                                         </div>
+                                    </div> */}
+
+                                    <div>
+                                        <button type="button" 
+                                            className="btn btn-outline-primary modaladd" 
+                                            data-toggle="modal" 
+                                            data-target="#exampleModaladd">
+                                                <i className="ion-md-add"></i>
+                                        </button>{" "}
+
+                                        <button type="button" 
+                                            className="btn btn-outline-primary" 
+                                            data-toggle="modal" 
+                                            data-target="#exampleModaledit">
+                                                <i className="ion-ios-refresh"></i>
+                                        </button>
+                                        
                                     </div>
+
                                     <div className="card-header bg-light">
                                         <h6 className="font-weight-bold mb-0">Tabla general de usuarios registrados</h6>
                                     </div>
                                     <div className="table-responsive">
-
                                         <div className="barraBusqueda">
-                                            <input
-                                                type="text"
+                                            <input type="text"
                                                 placeholder="Filtrar"
                                                 className="form-control"
                                                 name="busqueda"
@@ -137,18 +175,143 @@ class DataTableUser extends Component {
                                                 onChange={this.onChange}
                                             />
                                         </div>
-
+                                        
                                         <DataTable
-                                            columns={columnas}
-                                            data={this.state.usuarios}
-                                            title=""
+                                            columns={columnas (this.handleButtonClick)}
+                                            data={this.state.usuariosTabla}
                                             pagination
                                             paginationComponentOptions={paginationOpciones}
                                             fixedHeader
                                             fixedHeaderScrollHeight="600px"
                                             noDataComponent={<span>No se encontró ningún elemento</span>}
+                                            highlightOnHover
+		                                    pointerOnHover
+                                            onRowSelected={this.handleChange}
                                         />
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {/* Modal add*/}
+                    <div class="modal fade" 
+                        id="exampleModaladd" 
+                        tabindex="-1" 
+                        role="dialog" 
+                        aria-labelledby="exampleModalLabel" 
+                        aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title " id="exampleModalLabel">Agregar usuario</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                <form action="">
+                                    <div class="form-group ">
+                                        <label for="" class="form-label">Tipo de Documento</label>
+                                        <select id="typeDoc" class="form-control">
+                                            <option selected>Elija el Tipo de Documento</option>
+                                            <option value="1">Cedula Ciudadania</option>
+                                            <option value="2">Tarjeta de Identidad</option>
+                                            <option value="3">Registro Civil</option>
+                                            <option value="4">DNI(Pasaporte)</option>
+                                            <option value="5">Cedula Extranjeria</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="form-label">No. Documento</label>
+                                        <input type="number" class="form-control" id="doc" placeholder="# Documento" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Nombre Completo</label>
+                                        <input type="text" class="form-control" id="nom" placeholder="Nombre Completo" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Correo</label>
+                                        <input type="email" class="form-control" id="mail" placeholder="name@example.com" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Telefono</label>
+                                        <input type="number" class="form-control" id="tel" placeholder="# Telefono" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Direccion Residencia</label>
+                                        <input type="number" class="form-control" id="dir" placeholder="Direccion Residencia" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Fecha Nacimiento</label>
+                                        <input type="date" class="form-control" id="datetime" placeholder="yyyy-mm-dd" />
+                                    </div>
+                                </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    <button type="button" class="btn btn-primary" onClick={""}>Agregar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {/* Modal edit*/}
+                    <div class="modal fade" 
+                        id="exampleModaledit" 
+                        tabindex="-1" 
+                        role="dialog" 
+                        aria-labelledby="exampleModalLabel" 
+                        aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title " id="exampleModalLabel">Editar usuario</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                <form action="">
+                                    <div class="form-group ">
+                                        <label for="" class="form-label">Tipo de Documento</label>
+                                        <select id="typeDoc" class="form-control">
+                                            <option selected>Elija el Tipo de Documento</option>
+                                            <option value="1">Cedula Ciudadania</option>
+                                            <option value="2">Tarjeta de Identidad</option>
+                                            <option value="3">Registro Civil</option>
+                                            <option value="4">DNI(Pasaporte)</option>
+                                            <option value="5">Cedula Extranjeria</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="form-label">No. Documento</label>
+                                        <input type="number" class="form-control" id="doc" placeholder="# Documento" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Nombre Completo</label>
+                                        <input type="text" class="form-control" id="nom" placeholder="Nombre Completo" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Correo</label>
+                                        <input type="email" class="form-control" id="mail" placeholder="name@example.com" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Telefono</label>
+                                        <input type="number" class="form-control" id="tel" placeholder="# Telefono" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Direccion Residencia</label>
+                                        <input type="number" class="form-control" id="dir" placeholder="Direccion Residencia" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Fecha Nacimiento</label>
+                                        <input type="date" class="form-control" id="datetime" placeholder="yyyy-mm-dd" />
+                                    </div>
+                                </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" onClick={""}>Consultar</button>
+                                    <button type="button" class="btn btn-primary" onClick={""}>Editar</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>                                   
                                 </div>
                             </div>
                         </div>

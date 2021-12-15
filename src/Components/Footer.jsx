@@ -108,7 +108,7 @@ export default function Footer() {
 
                 {/* <!-- Copyright --> */}
                 <div className="text-center p-4" style={{"background-color": "rgba(0, 0, 0, 0.05)"}}>
-                    © 2021 Copyright:
+                    © 2021 Copyright: 
                     <a className="text-reset fw-bold" href="#">www.inmedica.com</a>
                 </div>
                 {/* <!-- Copyright --> */}

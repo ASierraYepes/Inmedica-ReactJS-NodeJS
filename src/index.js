@@ -7,16 +7,18 @@ import Inicio from './Inicio';
 import Registro from './Registro';
 import Dashboard from './Dashboard';
 import Usuarios from './Usuarios';
+import Usuarios2 from './Usuarios2';
 
 ReactDOM.render(
   <React.StrictMode>
   <Router>
     <Routes>
-      <Route exact path="/" element={<Inicio/>}/>
-      <Route path="/Login" element={<Login/>}/>
-      <Route path="/Registro" element={<Registro/>}/>
-      <Route path="/Dashboard" element={<Dashboard/>}/>
+      <Route exact path="/" element={<Inicio/>} />
+      <Route path="/Login" element={<Login/>} />
+      <Route path="/Registro" element={<Registro/>} />
+      <Route path="/Dashboard" element={<Dashboard/>} />
       <Route path="/Usuarios" element={<Usuarios/>} />
+      <Route path="/Usuarios2" element={<Usuarios2/>} />
     </Routes>
   </Router>
 </React.StrictMode>
