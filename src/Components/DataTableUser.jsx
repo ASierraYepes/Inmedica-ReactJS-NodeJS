@@ -19,7 +19,7 @@ import DataTable from 'react-data-table-component';
 
 
 // const tablaUsuarios = users.users;
-const columnas = ( clickHandle => [
+const columnas = ( handleClick => [
     {
         name: "Tipo de documento",
         selector: "typeDoc",
@@ -41,6 +41,11 @@ const columnas = ( clickHandle => [
         sortable: true
     },
     {
+        name: "Contraseña",
+        selector: "pass",
+        sortable: true
+    },
+    {
         name: "Telefono",
         selector: "tel",
         sortable: true
@@ -56,7 +61,18 @@ const columnas = ( clickHandle => [
         sortable: true
     },
     {
-        cell: (row) => <button onClick={clickHandle} id={ row.doc } className="btn btn-outline-primary"><i className="icon ion-md-trash"></i></button>,      
+        cell: (row) => 
+            <div>
+                <button onClick={" "} id={ row.doc } 
+                    type="button"
+                    className="btn btn-outline-primary">                  
+                        <i className="ion-ios-refresh"></i>
+                </button>{" "}
+                <button onClick={" "} id={ row.doc } 
+                    className="btn btn-outline-primary">
+                        <i className="icon ion-md-trash"></i>
+                </button>
+            </div>,      
         ignoreRowClick: true,
         allowOverflow: true,
         button: true,
@@ -109,11 +125,12 @@ class DataTableUser extends React.Component {
         this.setState({ selectedRows: state.selectedRows });
     };
 
-    /* Agregas funciones para el CRUD */
-
-
+    /*--------- CRUD ---------*/
 
     
+    
+    /*--------- FIN CRUD ---------*/
+
     render() {
         return (
             <>
@@ -175,7 +192,7 @@ class DataTableUser extends React.Component {
                                                 onChange={this.onChange}
                                             />
                                         </div>
-                                        
+      
                                         <DataTable
                                             columns={columnas (this.handleButtonClick)}
                                             data={this.state.usuariosTabla}
@@ -194,25 +211,29 @@ class DataTableUser extends React.Component {
                         </div>
                     </div>
                     {/* Modal add*/}
-                    <div class="modal fade" 
+                    <div className="modal fade" 
                         id="exampleModaladd" 
                         tabindex="-1" 
                         role="dialog" 
                         aria-labelledby="exampleModalLabel" 
                         aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title " id="exampleModalLabel">Agregar usuario</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <div className="modal-dialog" role="document">
+                            <div className="modal-content">
+                                <div className="modal-header">
+                                    <h5 className="modal-title " id="exampleModalLabel">Agregar usuario</h5>
+                                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <div class="modal-body">
-                                <form action="">
-                                    <div class="form-group ">
-                                        <label for="" class="form-label">Tipo de Documento</label>
-                                        <select id="typeDoc" class="form-control">
+                                <div className="modal-body">
+                                <form action="">                      
+                                    <div className="form-group">
+                                        <label for="" className="form-label">No. Documento</label>
+                                        <input type="number" className="form-control" id="doc" placeholder="# Documento" />
+                                    </div>
+                                    <div className="form-group ">
+                                        <label for="" className="form-label">Tipo de Documento</label>
+                                        <select id="typeDoc" className="form-control">
                                             <option selected>Elija el Tipo de Documento</option>
                                             <option value="1">Cedula Ciudadania</option>
                                             <option value="2">Tarjeta de Identidad</option>
@@ -221,59 +242,63 @@ class DataTableUser extends React.Component {
                                             <option value="5">Cedula Extranjeria</option>
                                         </select>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="" class="form-label">No. Documento</label>
-                                        <input type="number" class="form-control" id="doc" placeholder="# Documento" />
+                                    <div className="form-group">
+                                        <label for="" className="form-label">Nombre Completo</label>
+                                        <input type="text" className="form-control" id="nom" placeholder="Nombre Completo" />
                                     </div>
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Nombre Completo</label>
-                                        <input type="text" class="form-control" id="nom" placeholder="Nombre Completo" />
+                                    <div className="form-group">
+                                        <label for="" className="form-label">Correo</label>
+                                        <input type="email" className="form-control" id="mail" placeholder="name@example.com" />
                                     </div>
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Correo</label>
-                                        <input type="email" class="form-control" id="mail" placeholder="name@example.com" />
+                                    <div className="form-group">
+                                        <label for="" className="form-label">Contraseña</label>
+                                        <input type="password" className="form-control" id="pass" placeholder="Ingrese su contraseña" />
                                     </div>
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Telefono</label>
-                                        <input type="number" class="form-control" id="tel" placeholder="# Telefono" />
+                                    <div className="form-group">
+                                        <label for="" className="form-label">Telefono</label>
+                                        <input type="number" className="form-control" id="tel" placeholder="# Telefono" />
                                     </div>
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Direccion Residencia</label>
-                                        <input type="number" class="form-control" id="dir" placeholder="Direccion Residencia" />
+                                    <div className="form-group">
+                                        <label for="" className="form-label">Direccion Residencia</label>
+                                        <input type="number" className="form-control" id="dir" placeholder="Direccion Residencia" />
                                     </div>
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Fecha Nacimiento</label>
-                                        <input type="date" class="form-control" id="datetime" placeholder="yyyy-mm-dd" />
+                                    <div className="form-group">
+                                        <label for="" className="form-label">Fecha Nacimiento</label>
+                                        <input type="date" className="form-control" id="datetime" placeholder="yyyy-mm-dd" />
                                     </div>
                                 </form>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                    <button type="button" class="btn btn-primary" onClick={""}>Agregar</button>
+                                <div className="modal-footer">
+                                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    <button type="button" className="btn btn-primary" onClick={""}>Agregar</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                     {/* Modal edit*/}
-                    <div class="modal fade" 
+                    <div className="modal fade" 
                         id="exampleModaledit" 
                         tabindex="-1" 
                         role="dialog" 
                         aria-labelledby="exampleModalLabel" 
                         aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title " id="exampleModalLabel">Editar usuario</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <div className="modal-dialog" role="document">
+                            <div className="modal-content">
+                                <div className="modal-header">
+                                    <h5 className="modal-title " id="exampleModalLabel">Editar usuario</h5>
+                                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <div class="modal-body">
+                                <div className="modal-body">
                                 <form action="">
-                                    <div class="form-group ">
-                                        <label for="" class="form-label">Tipo de Documento</label>
-                                        <select id="typeDoc" class="form-control">
+                                    <div className="form-group">
+                                        <label for="" className="form-label">Consultar No. Documento</label>
+                                        <input type="number" className="form-control" id="doc" placeholder="# Documento" />
+                                    </div>
+                                    <div className="form-group ">
+                                        <label for="" className="form-label">Tipo de Documento</label>
+                                        <select id="typeDoc" className="form-control">
                                             <option selected>Elija el Tipo de Documento</option>
                                             <option value="1">Cedula Ciudadania</option>
                                             <option value="2">Tarjeta de Identidad</option>
@@ -282,36 +307,32 @@ class DataTableUser extends React.Component {
                                             <option value="5">Cedula Extranjeria</option>
                                         </select>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="" class="form-label">No. Documento</label>
-                                        <input type="number" class="form-control" id="doc" placeholder="# Documento" />
+                                    <div className="form-group">
+                                        <label for="" className="form-label">Nombre Completo</label>
+                                        <input type="text" className="form-control" id="nom" placeholder="Nombre Completo" />
                                     </div>
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Nombre Completo</label>
-                                        <input type="text" class="form-control" id="nom" placeholder="Nombre Completo" />
+                                    <div className="form-group">
+                                        <label for="" className="form-label">Correo</label>
+                                        <input type="email" className="form-control" id="mail" placeholder="name@example.com" />
                                     </div>
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Correo</label>
-                                        <input type="email" class="form-control" id="mail" placeholder="name@example.com" />
+                                    <div className="form-group">
+                                        <label for="" className="form-label">Telefono</label>
+                                        <input type="number" className="form-control" id="tel" placeholder="# Telefono" />
                                     </div>
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Telefono</label>
-                                        <input type="number" class="form-control" id="tel" placeholder="# Telefono" />
+                                    <div className="form-group">
+                                        <label for="" className="form-label">Direccion Residencia</label>
+                                        <input type="number" className="form-control" id="dir" placeholder="Direccion Residencia" />
                                     </div>
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Direccion Residencia</label>
-                                        <input type="number" class="form-control" id="dir" placeholder="Direccion Residencia" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Fecha Nacimiento</label>
-                                        <input type="date" class="form-control" id="datetime" placeholder="yyyy-mm-dd" />
+                                    <div className="form-group">
+                                        <label for="" className="form-label">Fecha Nacimiento</label>
+                                        <input type="date" className="form-control" id="datetime" placeholder="yyyy-mm-dd" />
                                     </div>
                                 </form>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary" onClick={""}>Consultar</button>
-                                    <button type="button" class="btn btn-primary" onClick={""}>Editar</button>
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>                                   
+                                <div className="modal-footer">
+                                    <button type="button" className="btn btn-primary" onClick={""}>Consultar</button>
+                                    <button type="button" className="btn btn-primary" onClick={""}>Editar</button>
+                                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Cerrar</button>                                   
                                 </div>
                             </div>
                         </div>

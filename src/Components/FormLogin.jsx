@@ -15,7 +15,7 @@ export default function FormLogin() {
                 </div>
                 <div className="form-group">
                     <label for="" className="form-label">Contraseña</label>
-                    <input type="password" className="form-control" id="tel" placeholder="Ingrese su contraseña"/>
+                    <input type="password" className="form-control" id="pass" placeholder="Ingrese su contraseña"/>
                 </div>
                 <div className="align-items-center">
                     <div>
