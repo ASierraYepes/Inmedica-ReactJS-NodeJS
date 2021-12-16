@@ -1,21 +1,46 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useRef } from "react";
 
 export default function FormLogin() {
+
+    const mailref  = useRef();
+    const passwordref = useRef();
+
+    function ingresar() {
+        const mail = mailref.current.value;
+        const password = passwordref.current.value;
+        fetch("http://localhost:9000/login/ingresar",{
+            headers: {"content-type": "application/json"},
+            method: "POST",
+            body: JSON.stringify({mail, password})
+        })
+        .then(res=>res.json())
+        .then(res=>{
+            if (res.estado === "OK"){
+                {window.location.href="/Dashboard"}
+            }else{ 
+                {window.location.href="/Login"}
+                alert(res.msg);
+            }  
+        })
+        .catch(error=>alert(error));
+    }
+
     return (
         <>
-            <form action="">
+            <form>
                 <div className="form-group ">
                     <h3>Iniciar sesión</h3>
                     <img src="img/microscopio2.png" className="d-block w-50 h-25 mx-auto" alt="img 1"/>
                 </div>
                 <div className="form-group">
                     <label for="" className="form-label">Correo</label>
-                    <input type="email" className="form-control" id="mail" placeholder="Ingrese su correo"/>
+                    <input type="email" className="form-control" id="mail" placeholder="Ingrese su correo" ref={mailref}/>
                 </div>
                 <div className="form-group">
                     <label for="" className="form-label">Contraseña</label>
-                    <input type="password" className="form-control" id="pass" placeholder="Ingrese su contraseña"/>
+                    <input type="password" className="form-control" id="pass" placeholder="Ingrese su contraseña" ref={passwordref}/>
                 </div>
                 <div className="align-items-center">
                     <div>
@@ -27,7 +52,7 @@ export default function FormLogin() {
                 </div><br/>
                 <div className="d-grid gap-2 d-md-block">
                     <Link to="/">
-                        <button className="btn btn-primary btn-block" type="button">Iniciar</button>
+                        <button className="btn btn-primary btn-block" type="button" onClick={ingresar}>Iniciar</button>
                     </Link>
                     <Link to="/">
                         <button className="btn btn-primary btn-block" style = {{"margin-top":"4px"}}type="button">Volver</button>
