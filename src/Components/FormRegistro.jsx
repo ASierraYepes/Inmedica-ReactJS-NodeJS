@@ -34,12 +34,12 @@ export default function FormRegistro() {
                     <img src="img/microscopio2.png" className="d-block w-50 h-25 mx-auto" alt="img 1" />
                     <label for="" className="form-label">Tipo de Documento</label>
                     <select id="typeDoc" className="form-control">
-                        <option selected>Elija el Tipo de Documento</option>
-                        <option value="1">Cedula Ciudadania</option>
-                        <option value="2">Tarjeta de Identidad</option>
-                        <option value="3">Registro Civil</option>
-                        <option value="4">DNI(Pasaporte)</option>
-                        <option value="5">Cedula Extranjeria</option>
+                    <option selected>Elija el Tipo de Documento</option>
+                        <option value="Cedula de Ciudadania">Cedula Ciudadania</option>
+                        <option value="Tarjeta de Identidad">Tarjeta de Identidad</option>
+                        <option value="Registro Civil">Registro Civil</option>
+                        <option value="DNI(Pasaporte)">DNI(Pasaporte)</option>
+                        <option value="Cedula Extranjeria">Cedula Extranjeria</option>
                     </select>
                 </div>
                 <div className="form-group">
@@ -73,9 +73,9 @@ export default function FormRegistro() {
                 <label for="" className="form-label">Rol</label>
                 <select id="rol" className="form-control">
                     <option selected>Elija el Tipo de Rol</option>
-                    <option value="1">Administrador</option>
-                    <option value="2">Paciente</option>
-                    <option value="3">Usuario Interno</option>
+                    <option value="Administrador">Administrador</option>
+                    <option value="Paciente">Paciente</option>
+                    <option value="Usuario Interno">Usuario Interno</option>
                 </select>
                 <br/>
                 <div className="d-grid gap-2 d-md-block">

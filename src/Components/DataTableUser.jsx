@@ -235,11 +235,11 @@ class DataTableUser extends React.Component {
                                         <label for="" className="form-label">Tipo de Documento</label>
                                         <select id="typeDoc" className="form-control">
                                             <option selected>Elija el Tipo de Documento</option>
-                                            <option value="1">Cedula Ciudadania</option>
-                                            <option value="2">Tarjeta de Identidad</option>
-                                            <option value="3">Registro Civil</option>
-                                            <option value="4">DNI(Pasaporte)</option>
-                                            <option value="5">Cedula Extranjeria</option>
+                                            <option value="Cedula de Ciudadania">Cedula Ciudadania</option>
+                                            <option value="Tarjeta de Identidad">Tarjeta de Identidad</option>
+                                            <option value="Registro Civil">Registro Civil</option>
+                                            <option value="DNI(Pasaporte)">DNI(Pasaporte)</option>
+                                            <option value="Cedula Extranjeria">Cedula Extranjeria</option>
                                         </select>
                                     </div>
                                     <div className="form-group">
@@ -299,12 +299,12 @@ class DataTableUser extends React.Component {
                                     <div className="form-group ">
                                         <label for="" className="form-label">Tipo de Documento</label>
                                         <select id="typeDoc" className="form-control">
-                                            <option selected>Elija el Tipo de Documento</option>
-                                            <option value="1">Cedula Ciudadania</option>
-                                            <option value="2">Tarjeta de Identidad</option>
-                                            <option value="3">Registro Civil</option>
-                                            <option value="4">DNI(Pasaporte)</option>
-                                            <option value="5">Cedula Extranjeria</option>
+                                        <option selected>Elija el Tipo de Documento</option>
+                                            <option value="Cedula de Ciudadania">Cedula Ciudadania</option>
+                                            <option value="Tarjeta de Identidad">Tarjeta de Identidad</option>
+                                            <option value="Registro Civil">Registro Civil</option>
+                                            <option value="DNI(Pasaporte)">DNI(Pasaporte)</option>
+                                            <option value="Cedula Extranjeria">Cedula Extranjeria</option>
                                         </select>
                                     </div>
                                     <div className="form-group">
