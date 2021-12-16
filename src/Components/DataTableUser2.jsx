@@ -33,8 +33,8 @@ const DataTableUser2 = (props) => {
                                 <h6 className="font-weight-bold mb-0">Tabla general de usuarios registrados</h6>
                             </div>
                             <div className="tabla">
-                                <table class="text-dark table-bordered tablasim" >
-                                    <thead>
+                                <table className="text-dark table-bordered tablasim table table-striped table-hover" >
+                                    <thead className="font-weight-bold">
                                         <td>Tipo de documento</td>
                                         <td>Documento</td>
                                         <td>Nombre</td>
@@ -71,5 +71,3 @@ const DataTableUser2 = (props) => {
 
 }
 export default DataTableUser2
-
-
