@@ -18,7 +18,6 @@ ReactDOM.render(
       <Route path="/Registro" element={<Registro/>} />
       <Route path="/Dashboard" element={<Dashboard/>} />
       <Route path="/Usuarios" element={<Usuarios/>} />
-      <Route path="/Usuarios2" element={<Usuarios2/>} />
     </Routes>
   </Router>
 </React.StrictMode>

@@ -1,11 +1,13 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useRef } from "react";
+
 
 export default function FormLogin() {
 
     const mailref  = useRef();
     const passwordref = useRef();
+    const navegacion = useNavigate();
 
     function ingresar() {
         const mail = mailref.current.value;
@@ -18,9 +20,9 @@ export default function FormLogin() {
         .then(res=>res.json())
         .then(res=>{
             if (res.estado === "OK"){
-                {window.location.href="/Dashboard"}
+                navegacion("/Dashboard");
             }else{ 
-                {window.location.href="/Login"}
+                navegacion("/Login");
                 alert(res.msg);
             }  
         })
@@ -51,9 +53,7 @@ export default function FormLogin() {
                     <a href="">¿Has olvidado tu contraseña?</a>
                 </div><br/>
                 <div className="d-grid gap-2 d-md-block">
-                    <Link to="/">
                         <button className="btn btn-primary btn-block" type="button" onClick={ingresar}>Iniciar</button>
-                    </Link>
                     <Link to="/">
                         <button className="btn btn-primary btn-block" style = {{"margin-top":"4px"}}type="button">Volver</button>
                     </Link> 

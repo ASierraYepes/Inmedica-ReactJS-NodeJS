@@ -79,9 +79,7 @@ export default function FormRegistro() {
                 </select>
                 <br/>
                 <div className="d-grid gap-2 d-md-block">
-                    <Link to="/">
                         <button className="btn btn-primary btn-block" type="button" onClick={registrar}>Registrar</button>
-                    </Link>
                     <Link to="/Login">
                         <button className="btn btn-primary btn-block" style = {{"margin-top":"4px"}} type="button" >Volver</button>
                     </Link>

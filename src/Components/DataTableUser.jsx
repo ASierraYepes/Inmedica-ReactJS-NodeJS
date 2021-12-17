@@ -3,23 +3,10 @@ import DataTable from 'react-data-table-component';
 
 
 
-// import users from "../API/users.json";
-
-
-// export function getApiData() {
-//     return fetch('http://localhost:3000/users')
-//         .then((data) => data.json())
-//         .then((res) => res)
-// }
-
-// getApiData().then(res => {
-//     console.log(data);
-//     this.setState({ result: data })
-// });
 
 
 // const tablaUsuarios = users.users;
-const columnas = ( handleClick => [
+const columnas = ( handleDelete => [
     {
         name: "Tipo de documento",
         selector: "typeDoc",
@@ -38,11 +25,6 @@ const columnas = ( handleClick => [
     {
         name: "Correo",
         selector: "mail",
-        sortable: true
-    },
-    {
-        name: "Contraseña",
-        selector: "pass",
         sortable: true
     },
     {
@@ -65,10 +47,12 @@ const columnas = ( handleClick => [
             <div>
                 <button onClick={" "} id={ row.doc } 
                     type="button"
-                    className="btn btn-outline-primary">                  
+                    className="btn btn-outline-primary" 
+                    data-toggle="modal" 
+                    data-target="#exampleModaledit">                           
                         <i className="ion-ios-refresh"></i>
-                </button>{" "}
-                <button onClick={" "} id={ row.doc } 
+                </button>
+                <button onClick={()=>handleDelete(row.doc)} id={ row.doc } 
                     className="btn btn-outline-primary">
                         <i className="icon ion-md-trash"></i>
                 </button>
@@ -102,7 +86,7 @@ class DataTableUser extends React.Component {
             if (item.doc.toString().includes(this.state.busqueda) ||
                 item.nom.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "").includes(this.state.busqueda) || /*(Normalize): es para quitar la expresion de los acentos*/
                 item.mail.toLowerCase().includes(this.state.busqueda) ||
-                item.tel.toLowerCase().includes(this.state.busqueda)
+                item.tel.toString.toLowerCase.includes(this.state.busqueda)
             ) {
                 return item;
             }
@@ -110,15 +94,24 @@ class DataTableUser extends React.Component {
         this.setState({ usuariosTabla: search });
     }
 
-    componentDidMount() {
-        fetch("users.json")
-        .then(res => res.json())
-        .then(data => this.setState({ usuarios: data.users, usuariosTabla : data.users }));   
+    leerUsuarios = ()=> {
+        setTimeout(() => {
+            fetch("http://localhost:9000/crudDash/listar")
+            .then(res => res.json())
+            .then(data => this.setState({ usuarios: data.usuarios, usuariosTabla : data.usuarios }));
+        }, 50);
+        
     }
 
-    handleButtonClick = (state) => {
-        console.log('clicked');
-    };
+    handleDelete = (doc) => {
+        fetch(`http://localhost:9000/crudDash/eliminar/${doc}`, {method: 'DELETE'})
+        this.leerUsuarios();
+    }
+    componentDidMount() {
+        this.leerUsuarios();
+    }
+
+
     handleChange = state => {
         console.log('state', state.selectedRows);
 
@@ -194,7 +187,7 @@ class DataTableUser extends React.Component {
                                         </div>
       
                                         <DataTable
-                                            columns={columnas (this.handleButtonClick)}
+                                            columns={columnas (this.handleDelete)}
                                             data={this.state.usuariosTabla}
                                             pagination
                                             paginationComponentOptions={paginationOpciones}
