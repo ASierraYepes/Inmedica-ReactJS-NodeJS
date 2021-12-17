@@ -1,7 +1,6 @@
 import React from 'react';
 import DataTable from 'react-data-table-component';
-
-
+import ModalEdit from './ModalEdit';
 
 
 
@@ -161,14 +160,14 @@ class DataTableUser extends React.Component {
                                             data-toggle="modal" 
                                             data-target="#exampleModaladd">
                                                 <i className="ion-md-add"></i>
-                                        </button>{" "}
+                                        </button>
 
-                                        <button type="button" 
+                                        {/* <button type="button" 
                                             className="btn btn-outline-primary" 
                                             data-toggle="modal" 
                                             data-target="#exampleModaledit">
                                                 <i className="ion-ios-refresh"></i>
-                                        </button>
+                                        </button> */}
                                         
                                     </div>
 
@@ -269,7 +268,8 @@ class DataTableUser extends React.Component {
                         </div>
                     </div>
                     {/* Modal edit*/}
-                    <div className="modal fade" 
+                    <ModalEdit/>
+                    {/* <div className="modal fade" 
                         id="exampleModaledit" 
                         tabindex="-1" 
                         role="dialog" 
@@ -329,7 +329,7 @@ class DataTableUser extends React.Component {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </section>
             </>
         )

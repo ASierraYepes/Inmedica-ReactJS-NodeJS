@@ -7,7 +7,7 @@ import Inicio from './Inicio';
 import Registro from './Registro';
 import Dashboard from './Dashboard';
 import Usuarios from './Usuarios';
-import Usuarios2 from './Usuarios2';
+
 
 ReactDOM.render(
   <React.StrictMode>
