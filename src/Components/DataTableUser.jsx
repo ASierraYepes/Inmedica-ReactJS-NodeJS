@@ -42,6 +42,11 @@ const columnas = ( (handleEdit,handleDelete) => [
         sortable: true
     },
     {
+        name: "Rol",
+        selector: "rol",
+        sortable: true
+    },
+    {
         cell: (row) =>
             <div>
                 <button onClick={()=>handleEdit(row)} id={ row.doc } 
@@ -50,7 +55,7 @@ const columnas = ( (handleEdit,handleDelete) => [
                     data-toggle="modal" 
                     data-target="#exampleModaledit">                           
                         <i className="ion-ios-refresh"></i>
-                </button>
+                </button>{" "}
                 <button onClick={()=>handleDelete(row.doc)} id={ row.doc } 
                     className="btn btn-outline-primary">
                         <i className="icon ion-md-trash"></i>
