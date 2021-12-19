@@ -1,6 +1,7 @@
 import React from 'react'
 
-export default function ModalEdit() {
+export default function ModalEdit({selectedUser,handleSubmit}) {
+
     return (
         <>
            <div className="modal fade" 
@@ -18,56 +19,54 @@ export default function ModalEdit() {
                             </button>
                         </div>
                         <div className="modal-body">
-                            <form action="">
+                            <form id ="updateForm" onSubmit={handleSubmit}>
                                 <div className="form-group">
                                     <label for="" className="form-label">Consultar No. Documento</label>
-                                    <input type="number" className="form-control" id="doc" placeholder="# Documento" />
+                                    <input type="number" className="form-control" name="doc" defaultValue={selectedUser.doc} />
                                 </div>
                                 <div className="form-group ">
                                     <label for="" className="form-label">Tipo de Documento</label>
-                                    <select id="typeDoc" className="form-control">
-                                        <option selected>Elija el Tipo de Documento</option>
-                                        <option value="Cedula de Ciudadania">Cedula Ciudadania</option>
-                                        <option value="Tarjeta de Identidad">Tarjeta de Identidad</option>
-                                        <option value="Registro Civil">Registro Civil</option>
-                                        <option value="DNI(Pasaporte)">DNI(Pasaporte)</option>
-                                        <option value="Cedula Extranjeria">Cedula Extranjeria</option>
+                                    <select name="typeDoc" className="form-control">
+                                        <option selected={selectedUser.rol==="Cedula de Ciudadania"} value="Cedula de Ciudadania">Cedula Ciudadania</option>
+                                        <option selected={selectedUser.rol==="Tarjeta de Identidad"} value="Tarjeta de Identidad">Tarjeta de Identidad</option>
+                                        <option selected={selectedUser.rol==="Registro Civil"} value="Registro Civil">Registro Civil</option>
+                                        <option selected={selectedUser.rol==="DNI(Pasaporte)"} value="DNI(Pasaporte)">DNI(Pasaporte)</option>
+                                        <option selected={selectedUser.rol==="Cedula Extranjeria"} value="Cedula Extranjeria">Cedula Extranjeria</option>
                                     </select>
                                 </div>
                                 <div className="form-group">
                                     <label for="" className="form-label">Nombre Completo</label>
-                                    <input type="text" className="form-control" id="nom" placeholder="Nombre Completo" />
+                                    <input type="text" className="form-control" name="nom" defaultValue={selectedUser.nom}/>
                                 </div>
                                 <div className="form-group">
                                     <label for="" className="form-label">Correo</label>
-                                    <input type="email" className="form-control" id="mail" placeholder="name@example.com" />
+                                    <input type="email" className="form-control" name="mail"  defaultValue={selectedUser.mail}/>
                                 </div>
                                 <div className="form-group">
                                     <label for="" className="form-label">Telefono</label>
-                                    <input type="number" className="form-control" id="tel" placeholder="# Telefono" />
+                                    <input type="number" className="form-control" name="tel" defaultValue={selectedUser.tel} />
                                 </div>
                                 <div className="form-group">
                                     <label for="" className="form-label">Direccion Residencia</label>
-                                    <input type="number" className="form-control" id="dir" placeholder="Direccion Residencia" />
+                                    <input type="text" className="form-control" name="dir" defaultValue={selectedUser.dir} />
                                 </div>
                                 <div className="form-group">
                                     <label for="" className="form-label">Fecha Nacimiento</label>
-                                    <input type="date" className="form-control" id="datetime" placeholder="yyyy-mm-dd" />
+                                    <input type="date" className="form-control" name="datetime" defaultValue={selectedUser.datetime} />
                                 </div>
                                 <div className="form-group ">
                                     <label for="" className="form-label">Rol</label>
-                                    <select id="rol" className="form-control">
-                                        <option selected>Elija el Tipo de Rol</option>
-                                        <option value="Administrador">Administrador</option>
-                                        <option value="Paciente">Paciente</option>
-                                        <option value="Usuario Interno">Usuario Interno</option>
+                                    <select name="rol" className="form-control">
+                                        <option selected={selectedUser.rol==="Administrador"} value="Administrador">Administrador</option>
+                                        <option selected={selectedUser.rol==="Paciente"} value="Paciente">Paciente</option>
+                                        <option selected={selectedUser.rol==="Usuario Interno"} value="Usuario Interno">Usuario Interno</option>
                                     </select>
                                 </div>
                             </form>
                         </div>
                         <div className="modal-footer">
                             {/* <button type="button" className="btn btn-primary" onClick={""}>Consultar</button> */}
-                            <button type="button" className="btn btn-primary" onClick={""}>Actualizar</button>
+                            <button type="submit" className="btn btn-primary" form="updateForm">Actualizar</button>
                             <button type="button" className="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                         </div>
                     </div>

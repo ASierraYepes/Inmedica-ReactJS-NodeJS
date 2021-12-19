@@ -1,11 +1,11 @@
 import React from 'react';
 import DataTable from 'react-data-table-component';
+import ModalAdd from './ModalAdd';
 import ModalEdit from './ModalEdit';
 
 
-
 // const tablaUsuarios = users.users;
-const columnas = ( handleDelete => [
+const columnas = ( (handleEdit,handleDelete) => [
     {
         name: "Tipo de documento",
         selector: "typeDoc",
@@ -42,15 +42,20 @@ const columnas = ( handleDelete => [
         sortable: true
     },
     {
-        cell: (row) => 
+        name: "Rol",
+        selector: "rol",
+        sortable: true
+    },
+    {
+        cell: (row) =>
             <div>
-                <button onClick={" "} id={ row.doc } 
+                <button onClick={()=>handleEdit(row)} id={ row.doc } 
                     type="button"
                     className="btn btn-outline-primary" 
                     data-toggle="modal" 
                     data-target="#exampleModaledit">                           
                         <i className="ion-ios-refresh"></i>
-                </button>
+                </button>{" "}
                 <button onClick={()=>handleDelete(row.doc)} id={ row.doc } 
                     className="btn btn-outline-primary">
                         <i className="icon ion-md-trash"></i>
@@ -72,7 +77,8 @@ const paginationOpciones = {
 class DataTableUser extends React.Component {
 
     state = {
-        busquedas: ""
+        busquedas: "",
+        selectedUser: {}
     }
     onChange = async e => {
         e.persist();
@@ -101,6 +107,39 @@ class DataTableUser extends React.Component {
         }, 50);
         
     }
+    handleSubmit = (event) => {
+        event.preventDefault();
+        const data = new FormData(event.target);
+        const user = {typeDoc: data.get('typeDoc'), doc: data.get('doc'), nom: data.get('nom'), mail: data.get('mail'), tel: data.get('tel'), dir: data.get('dir'), datetime: data.get('datetime'), rol: data.get('rol')} 
+        fetch("http://localhost:9000/crudDash/actualizar",{
+            headers: {"content-type":"application/json"},
+            method: "PUT",
+            body: JSON.stringify(user)
+             })
+        .then(dato=>dato.json())
+        .then(dato=>alert("Registro Actualizado Exitosamente!!"))
+        .catch(error=>alert(error));
+        this.leerUsuarios();
+    };
+
+    // handleAdd = (event) => {
+    //     event.preventDefault();
+    //     const data = new FormData(event.target);
+    //     const user = {typeDoc: data.get('typeDoc'), doc: data.get('doc'), nom: data.get('nom'), mail: data.get('mail'), password: data.get('password'),tel: data.get('tel'), dir: data.get('dir'), datetime: data.get('datetime'), rol: data.get('rol')} 
+    //     fetch("http://localhost:9000/crudDash/agregar",{
+    //         headers: {"content-type":"application/json"},
+    //         method: "POST",
+    //         body: JSON.stringify(user)
+    //         })
+    //     .then(dato=>dato.json())
+    //     .then(dato=>alert(dato.msg))
+    //     .catch(error=>alert(error));
+    //     this.leerUsuarios();
+    // };
+
+    handleEdit = (usuario) => {
+        this.setState({selectedUser: usuario})
+    }
 
     handleDelete = (doc) => {
         fetch(`http://localhost:9000/crudDash/eliminar/${doc}`, {method: 'DELETE'})
@@ -117,12 +156,6 @@ class DataTableUser extends React.Component {
         this.setState({ selectedRows: state.selectedRows });
     };
 
-    /*--------- CRUD ---------*/
-
-    
-    
-    /*--------- FIN CRUD ---------*/
-
     render() {
         return (
             <>
@@ -131,44 +164,13 @@ class DataTableUser extends React.Component {
                         <div className="row" id="GraficoDash">
                             <div className="col-lg-12 my-3">
                                 <div className="card rounded-1">
-
-                                    {/* <Link to="">
-                                        <button className="btn btn-add" type="submit"><i className="icon ion-md-add"></i> Agregar</button>
-                                    </Link> */}
-                                    {/* <div className="dropdown btn-action">
-                                        <a className="text-dark dropdown-toggle" href="#" id=""
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i className="icon ion-ios-settings"></i> Acción
-                                        </a>
-                                        
-                                        <div className="dropdown-menu btn-action" aria-labelledby="navbarDropdown">
-                                            <Link to="/Dashboard" className="dropdown-item">
-                                                <a><i className="icon ion-md-person-add"></i> Agregar</a>
-                                            </Link>
-                                            <Link to="" className="dropdown-item">
-                                                <a><i className="icon ion-ios-refresh"></i> Actualizar</a>
-                                            </Link>
-                                            <Link to="" className="dropdown-item">
-                                                <a><i className="icon ion-ios-trash"></i> Eliminar</a>
-                                            </Link>                                        
-                                        </div>
-                                    </div> */}
-
                                     <div>
-                                        <button type="button" 
+                                        <button type="button" onClick={" "}
                                             className="btn btn-outline-primary modaladd" 
                                             data-toggle="modal" 
                                             data-target="#exampleModaladd">
                                                 <i className="ion-md-add"></i>
                                         </button>
-
-                                        {/* <button type="button" 
-                                            className="btn btn-outline-primary" 
-                                            data-toggle="modal" 
-                                            data-target="#exampleModaledit">
-                                                <i className="ion-ios-refresh"></i>
-                                        </button> */}
-                                        
                                     </div>
 
                                     <div className="card-header bg-light">
@@ -186,7 +188,7 @@ class DataTableUser extends React.Component {
                                         </div>
       
                                         <DataTable
-                                            columns={columnas (this.handleDelete)}
+                                            columns={columnas (this.handleEdit,this.handleDelete)}
                                             data={this.state.usuariosTabla}
                                             pagination
                                             paginationComponentOptions={paginationOpciones}
@@ -203,133 +205,9 @@ class DataTableUser extends React.Component {
                         </div>
                     </div>
                     {/* Modal add*/}
-                    <div className="modal fade" 
-                        id="exampleModaladd" 
-                        tabindex="-1" 
-                        role="dialog" 
-                        aria-labelledby="exampleModalLabel" 
-                        aria-hidden="true">
-                        <div className="modal-dialog" role="document">
-                            <div className="modal-content">
-                                <div className="modal-header">
-                                    <h5 className="modal-title " id="exampleModalLabel">Agregar usuario</h5>
-                                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div className="modal-body">
-                                <form action="">                      
-                                    <div className="form-group">
-                                        <label for="" className="form-label">No. Documento</label>
-                                        <input type="number" className="form-control" id="doc" placeholder="# Documento" />
-                                    </div>
-                                    <div className="form-group ">
-                                        <label for="" className="form-label">Tipo de Documento</label>
-                                        <select id="typeDoc" className="form-control">
-                                            <option selected>Elija el Tipo de Documento</option>
-                                            <option value="Cedula de Ciudadania">Cedula Ciudadania</option>
-                                            <option value="Tarjeta de Identidad">Tarjeta de Identidad</option>
-                                            <option value="Registro Civil">Registro Civil</option>
-                                            <option value="DNI(Pasaporte)">DNI(Pasaporte)</option>
-                                            <option value="Cedula Extranjeria">Cedula Extranjeria</option>
-                                        </select>
-                                    </div>
-                                    <div className="form-group">
-                                        <label for="" className="form-label">Nombre Completo</label>
-                                        <input type="text" className="form-control" id="nom" placeholder="Nombre Completo" />
-                                    </div>
-                                    <div className="form-group">
-                                        <label for="" className="form-label">Correo</label>
-                                        <input type="email" className="form-control" id="mail" placeholder="name@example.com" />
-                                    </div>
-                                    <div className="form-group">
-                                        <label for="" className="form-label">Contraseña</label>
-                                        <input type="password" className="form-control" id="pass" placeholder="Ingrese su contraseña" />
-                                    </div>
-                                    <div className="form-group">
-                                        <label for="" className="form-label">Telefono</label>
-                                        <input type="number" className="form-control" id="tel" placeholder="# Telefono" />
-                                    </div>
-                                    <div className="form-group">
-                                        <label for="" className="form-label">Direccion Residencia</label>
-                                        <input type="number" className="form-control" id="dir" placeholder="Direccion Residencia" />
-                                    </div>
-                                    <div className="form-group">
-                                        <label for="" className="form-label">Fecha Nacimiento</label>
-                                        <input type="date" className="form-control" id="datetime" placeholder="yyyy-mm-dd" />
-                                    </div>
-                                </form>
-                                </div>
-                                <div className="modal-footer">
-                                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                    <button type="button" className="btn btn-primary" onClick={""}>Agregar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <ModalAdd leerUsuarios={this.leerUsuarios}/>
                     {/* Modal edit*/}
-                    <ModalEdit/>
-                    {/* <div className="modal fade" 
-                        id="exampleModaledit" 
-                        tabindex="-1" 
-                        role="dialog" 
-                        aria-labelledby="exampleModalLabel" 
-                        aria-hidden="true">
-                        <div className="modal-dialog" role="document">
-                            <div className="modal-content">
-                                <div className="modal-header">
-                                    <h5 className="modal-title " id="exampleModalLabel">Editar usuario</h5>
-                                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div className="modal-body">
-                                <form action="">
-                                    <div className="form-group">
-                                        <label for="" className="form-label">Consultar No. Documento</label>
-                                        <input type="number" className="form-control" id="doc" placeholder="# Documento" />
-                                    </div>
-                                    <div className="form-group ">
-                                        <label for="" className="form-label">Tipo de Documento</label>
-                                        <select id="typeDoc" className="form-control">
-                                        <option selected>Elija el Tipo de Documento</option>
-                                            <option value="Cedula de Ciudadania">Cedula Ciudadania</option>
-                                            <option value="Tarjeta de Identidad">Tarjeta de Identidad</option>
-                                            <option value="Registro Civil">Registro Civil</option>
-                                            <option value="DNI(Pasaporte)">DNI(Pasaporte)</option>
-                                            <option value="Cedula Extranjeria">Cedula Extranjeria</option>
-                                        </select>
-                                    </div>
-                                    <div className="form-group">
-                                        <label for="" className="form-label">Nombre Completo</label>
-                                        <input type="text" className="form-control" id="nom" placeholder="Nombre Completo" />
-                                    </div>
-                                    <div className="form-group">
-                                        <label for="" className="form-label">Correo</label>
-                                        <input type="email" className="form-control" id="mail" placeholder="name@example.com" />
-                                    </div>
-                                    <div className="form-group">
-                                        <label for="" className="form-label">Telefono</label>
-                                        <input type="number" className="form-control" id="tel" placeholder="# Telefono" />
-                                    </div>
-                                    <div className="form-group">
-                                        <label for="" className="form-label">Direccion Residencia</label>
-                                        <input type="number" className="form-control" id="dir" placeholder="Direccion Residencia" />
-                                    </div>
-                                    <div className="form-group">
-                                        <label for="" className="form-label">Fecha Nacimiento</label>
-                                        <input type="date" className="form-control" id="datetime" placeholder="yyyy-mm-dd" />
-                                    </div>
-                                </form>
-                                </div>
-                                <div className="modal-footer">
-                                    <button type="button" className="btn btn-primary" onClick={""}>Consultar</button>
-                                    <button type="button" className="btn btn-primary" onClick={""}>Editar</button>
-                                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Cerrar</button>                                   
-                                </div>
-                            </div>
-                        </div>
-                    </div> */}
+                    <ModalEdit selectedUser={this.state.selectedUser} handleSubmit={this.handleSubmit}/>
                 </section>
             </>
         )
