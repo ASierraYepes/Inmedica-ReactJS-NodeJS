@@ -1,13 +1,23 @@
 import React from 'react';
 import DataTable from 'react-data-table-component';
-import ModalEditAgenda from './ModalEditAgenda';
+import ModalEditCita from './ModalEditCita';
 
 
 // const tablaUsuarios = users.users;
-const columnas = ( (EditHorario,EliminarHorario) => [
+const columnas = ( (EditCitaExamen,EliminarHorario) => [
     {
         name: "id",
         selector: "_id",
+        sortable: true
+    },
+    {
+        name: "Tipo Documento",
+        selector: "typeDoc",
+        sortable: true
+    },
+    {
+        name: "Documento",
+        selector: "doc",
         sortable: true
     },
     {
@@ -16,19 +26,19 @@ const columnas = ( (EditHorario,EliminarHorario) => [
         sortable: true
     },
     {
-        name: "Hora",
+        name: "Numero de documento",
         selector: "hora",
         sortable: true
     },
     {
-        name: "Estado",
-        selector: "estado",
+        name: "Código",
+        selector: "codigo",
         sortable: true
     },
     {
         cell: (row) =>
             <div>
-                <button onClick={()=>EditHorario(row)} id={ row._id } 
+                <button onClick={()=>EditCitaExamen(row)} id={ row._id } 
                     type="button"
                     className="btn btn-outline-primary" 
                     data-toggle="modal" 
@@ -54,11 +64,11 @@ const paginationOpciones = {
 }
 
 
-class AgendaTabla extends React.Component {
+class TablaCitas extends React.Component {
 
     state = {
         busquedas: "",
-        selectedHorario: {}
+        selectedCita: {}
     }
     onChange = async e => {
         e.persist();
@@ -66,42 +76,42 @@ class AgendaTabla extends React.Component {
         this.filtrarElementos();
     }
 
-    leerHorarios = ()=> {
+    leerCitas = ()=> {
         setTimeout(() => {
-            fetch("http://localhost:9000/agenda/listar_a")
+            fetch("http://localhost:9000/citaexamen/listar_ce")
             .then(res => res.json())
-            .then(data => this.setState({ horarios: data.horarios, agendaTabla : data.horarios }));
+            .then(data => this.setState({ citas: data.citas, citasTabla : data.citas }));
         }, 50);
-        
     }
-    ActualizarHorario = (event) => {
+    
+    ActualizarCita = (event) => {
         event.preventDefault();
         const data = new FormData(event.target);
-        const user = {_id: data.get('id'),fecha: data.get('fecha'), hora: data.get('hora'), estado: data.get('estado')} 
-        fetch("http://localhost:9000/agenda/actualizar_a",
+        const cita = {_id: data.get('id'), typeDoc: data.get('typeDoc'),doc: data.get('doc'), fecha: data.get('fecha'), hora: data.get('hora'), codigo: data.get('codigo')} 
+        fetch("http://localhost:9000/citaexamen/actualizar_ce",
             {
             headers: {"content-type":"application/json"},
             method: "POST",
-            body: JSON.stringify(user)
+            body: JSON.stringify(cita)
              })
         .then(dato=>dato.json())
-        .then(dato=>alert("Horario Actualizado Exitosamente!!"))
+        .then(dato=>alert(dato.msg))
         .catch(error=>alert(error));
-        this.leerHorarios();
+        this.leerCitas();
     };
 
 
-    EditHorario = (horario) => {
-        this.setState({selectedHorario: horario})
+    EditCitaExamen = (cita) => {
+        this.setState({selectedCita: cita})
     }
 
     EliminarHorario = (_id) => {
         
         fetch(`http://localhost:9000/agenda/eliminar_a/${_id}`, {method: 'DELETE'})
-        this.leerHorarios();
+        this.leerCitas();
     }
     componentDidMount() {
-        this.leerHorarios();
+        this.leerCitas();
     }
 
 
@@ -127,8 +137,8 @@ class AgendaTabla extends React.Component {
                                 <div className="card rounded-1">
                                     <div className="table-responsive">
                                         <DataTable
-                                            columns={columnas (this.EditHorario,this.EliminarHorario)}
-                                            data={this.state.agendaTabla}
+                                            columns={columnas (this.EditCitaExamen,this.EliminarHorario)}
+                                            data={this.state.citasTabla}
                                             pagination
                                             paginationComponentOptions={paginationOpciones}
                                             fixedHeader
@@ -146,10 +156,10 @@ class AgendaTabla extends React.Component {
                     {/* Modal add*/}
                 
                     {/* Modal edit*/}
-                    <ModalEditAgenda selectedHorario={this.state.selectedHorario} ActualizarHorario={this.ActualizarHorario}/>
+                    <ModalEditCita selectedCita={this.state.selectedCita} ActualizarCita={this.ActualizarCita}/>
                 </section>
             </>
         )
     }
 }
-export default AgendaTabla;
+export default TablaCitas;

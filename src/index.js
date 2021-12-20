@@ -7,7 +7,7 @@ import Inicio from './Inicio';
 import Registro from './Registro';
 import Dashboard from './Dashboard';
 import Usuarios from './Usuarios';
-import Examenes from './Examenes';
+import Citas from './Citas';
 import Agenda from './Agenda';
 
 ReactDOM.render(
@@ -19,7 +19,7 @@ ReactDOM.render(
       <Route path="/Registro" element={<Registro/>} />
       <Route path="/Dashboard" element={<Dashboard/>} />
       <Route path="/Usuarios" element={<Usuarios/>} />
-      <Route path="/Examenes" element={<Examenes/>} />
+      <Route path="/Examenes" element={<Citas/>} />
       <Route path="/Agenda" element={<Agenda/>} />
     </Routes>
   </Router>

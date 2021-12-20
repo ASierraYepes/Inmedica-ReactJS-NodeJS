@@ -27,7 +27,7 @@ export default function NavUpDashboard() {
                                         <a><i className="icon ion-ios-people"></i> Perfil</a>
                                     </Link>
                                     <div className="dropdown-divider"></div>
-                                    <Link to="" className="dropdown-item">
+                                    <Link to="/Login" className="dropdown-item">
                                         <a><i className="icon ion-ios-log-out"></i> Cerrar sesión</a>
                                     </Link>
                                 </div>
