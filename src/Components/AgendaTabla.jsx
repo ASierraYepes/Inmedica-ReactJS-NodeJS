@@ -16,7 +16,7 @@ const columnas = ( (EditHorario,EliminarHorario) => [
         sortable: true
     },
     {
-        name: "Numero de documento",
+        name: "Hora",
         selector: "hora",
         sortable: true
     },
