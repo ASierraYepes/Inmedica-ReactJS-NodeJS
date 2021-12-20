@@ -13,8 +13,12 @@ export default function NavbarDashboard() {
                     <Link to="/Dashboard">
                     <a className="d-block text-light p-3 border-0"><i className="icon ion-ios-speedometer lead mr-2"></i>Dashboard</a>
                     </Link>
+                    <Link to="/Agenda">
                     <a href="#" className="d-block text-light p-3 border-0"><i className="icon ion-ios-today lead mr-2"></i>Agenda</a>
+                    </Link>
+                    <Link to="/Examenes">
                     <a href="#" className="d-block text-light p-3 border-0"><i className="icon ion-ios-eye lead mr-2"></i>Exámenes</a>
+                    </Link>
                     <a href="#" className="d-block text-light p-3 border-0"><i className="icon ion-md-done-all lead mr-2"></i>Resultados</a>
                     <Link to="/Usuarios">
                         <a className="d-block text-light p-3 border-0"><i className="icon ion-md-person  lead mr-2"></i>Usuarios</a>
