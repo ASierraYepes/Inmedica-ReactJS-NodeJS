@@ -41,7 +41,7 @@ export default function HorariosExamenes() {
                             </div>
                             <div className="d-grid gap-2 d-md-block">
                                 <button className="btn btn-primary" type="button" onClick={grabar_a}>Agregar Horario</button>
-                            </div><br />
+                            </div><br/><br/>
                         </form>
                     </div>
                 </div>
