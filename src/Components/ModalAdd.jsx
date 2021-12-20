@@ -24,6 +24,7 @@ export default function ModalAdd(leerUsuarios) {
         .then(dato=>dato.json())
         .then(dato=>alert(dato.msg))
         .catch(error=>alert(error));
+        
     };
     return (
       <>

@@ -1,13 +1,15 @@
 import React from 'react'
-import AgendaTabla from './Components/AgendaTabla'
+import AgendaCita from './Components/AgendaCita'
+// import ConcultaExam from './Components/ConsultaExam'
+// import AgendaExamTable from './Components/ExamPacienteTable'
 import Footer from './Components/Footer'
-import HorariosExamenes from './Components/HorariosExamenes'
 import NavbarDashboard from './Components/NavbarDashboard'
 import NavUpDashboard from './Components/NavUpDashboard'
+import TablaCitas from './Components/TablaCitas'
 
-export default function Agenda() {
+export default function Citas() {
     return (
-        <>
+      <>
         <div id="body-dashboard">
         <div className="d-flex" id="content-wrapper">
             <NavbarDashboard/>
@@ -18,20 +20,20 @@ export default function Agenda() {
                         <div className="">
                             <div className="row" id="TituloDash">
                                 <div className="col-lg-9 col-md-8">
-                                    <h1 className="font-weight-bold mb-0">Agendas</h1>
+                                    <h1 className="font-weight-bold mb-0">Exámenes</h1>
                                 </div>
                             </div>
                         </div>
                     </section>       
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Agendar Horario</button>
+                            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Agendar Cita</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Horarios Agendados</button>
+                            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Citas Agendados</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Lo que va 2</button>
+                            <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Exámenes</button>
                         </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
@@ -43,9 +45,9 @@ export default function Agenda() {
                                             <br/>
                                             <div className="card rounded-1">
                                                 <div className="card-header bg-light">
-                                                    <h6 className="font-weight-bold mb-0">Agendar horario</h6>
+                                                    <h6 className="font-weight-bold mb-0">Agendar cita</h6>
                                                 </div>
-                                                <HorariosExamenes />
+                                                <AgendaCita />
                                             </div>
                                         </div>
                                     </div>
@@ -60,9 +62,9 @@ export default function Agenda() {
                                         <br/>
                                             <div className="card rounded-1">
                                                 <div className="card-header bg-light">
-                                                    <h6 className="font-weight-bold mb-0">Horarios agendados</h6>
+                                                    <h6 className="font-weight-bold mb-0">Exámenes agendados</h6>
                                                 </div>
-                                                <AgendaTabla />
+                                                <TablaCitas/>
                                             </div>
                                         </div>
                                     </div>
@@ -73,10 +75,50 @@ export default function Agenda() {
                     </div>
  
                 </div>
+
+              {/* <div id="Contenido" className="bg-grey w-100">
+                <section className="bg-light py-3">
+                  <div className="">
+                    <div className="row" id="TituloDash">
+                      <div className="col-lg-9 col-md-8">
+                        <h1 className="font-weight-bold mb-0">
+                          Exámenes por pacientes
+                        </h1>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <section>
+                  <div className="container">
+                    <div className="row" id="GraficoDash">
+                      <div className="col-lg-5 my-3">
+                        <div className="card rounded-1">
+                          <div className="card-header bg-light">
+                            <h6 className="font-weight-bold mb-0">
+                              Conculta cita de exámenes
+                            </h6>
+                          </div>
+                          <ConcultaExam />
+                        </div>
+                      </div>
+                      <div className="col-lg-7 my-3">
+                        <div className="card rounded-1">
+                          <div className="card-header bg-light">
+                            <h6 className="font-weight-bold mb-0">
+                              Exámenes Pendientes
+                            </h6>
+                          </div>
+                          <AgendaExamTable />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div> */}
+                </div>
             </div>
+          <Footer />
         </div>
-        <Footer/>
-    </div>
-    </>
-    )
+      </>
+    );
 }
