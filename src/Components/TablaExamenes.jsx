@@ -26,7 +26,7 @@ const columnas = ( (EditExamen,EliminarExamen) => [
                     type="button"
                     className="btn btn-outline-primary" 
                     data-toggle="modal" 
-                    data-target="#exampleModaledit">                           
+                    data-target="#Modaleditexam">                           
                         <i className="ion-ios-refresh"></i>
                 </button>{" "}
                 <button onClick={()=>EliminarExamen(row._id)} id={ [row._id] } 
@@ -46,7 +46,6 @@ const paginationOpciones = {
     selectAllRowsItem: true,
     selectAllRowsItemText: "Todos"
 }
-
 
 class Tablaexamenes extends React.Component {
 
@@ -72,8 +71,7 @@ class Tablaexamenes extends React.Component {
         event.preventDefault();
         const data = new FormData(event.target);
         const user = {_id: data.get('id'),codigo: data.get('codigo'), descripcion: data.get('descripcion')} 
-        fetch("http://localhost:9000/examen/actualizar_e",
-            {
+        fetch("http://localhost:9000/examen/actualizar_e",{
             headers: {"content-type":"application/json"},
             method: "POST",
             body: JSON.stringify(user)
@@ -105,12 +103,6 @@ class Tablaexamenes extends React.Component {
         this.setState({ selectedRows: state.selectedRows });
     };
 
-    /*--------- CRUD ---------*/
-
-    
-    
-    /*--------- FIN CRUD ---------*/
-
     render() {
         return (
             <>
@@ -137,9 +129,7 @@ class Tablaexamenes extends React.Component {
                             </div>
                         </div>
                     </div>
-                    {/* Modal add*/}
-                
-                    {/* Modal edit*/}
+
                     <ModalEditExamen selectedExamen={this.state.selectedExamen} ActualizarExamen={this.ActualizarExamen}/>
                 </section>
             </>

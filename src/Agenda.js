@@ -18,7 +18,7 @@ export default function Agenda() {
                         <div className="">
                             <div className="row" id="TituloDash">
                                 <div className="col-lg-9 col-md-8">
-                                    <h1 className="font-weight-bold mb-0">Agendas</h1>
+                                    <h1 className="font-weight-bold mb-0">Agenda</h1>
                                 </div>
                             </div>
                         </div>
@@ -28,7 +28,7 @@ export default function Agenda() {
                             <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Agendar Horario</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Horarios Agendados</button>
+                            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Horarios Disponibles</button>
                         </li>
                         {/* <li class="nav-item" role="presentation">
                             <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Lo que va 2</button>

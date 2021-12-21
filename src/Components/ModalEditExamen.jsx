@@ -5,7 +5,7 @@ export default function ModalEditExamen({selectedExamen,ActualizarExamen}) {
     return (
         <>
            <div className="modal fade" 
-                id="exampleModaledit"
+                id="Modaleditexam"
                 tabindex="-1"
                 role="dialog"
                 aria-labelledby="exampleModalLabel"
@@ -26,11 +26,11 @@ export default function ModalEditExamen({selectedExamen,ActualizarExamen}) {
                                 </div>
                                 <div className="form-group">
                                     <label for="" className="form-label">Codigo</label>
-                                    <input type="number" className="form-control" name="doc" defaultValue={selectedExamen.codigo} />
+                                    <input type="text" className="form-control" name="codigo" defaultValue={selectedExamen.codigo} />
                                 </div>
                                 <div className="form-group">
                                     <label for="" className="form-label">Descripcion</label>
-                                    <input type="text" className="form-control" name="fecha" defaultValue={selectedExamen.descripcion} />
+                                    <input type="text" className="form-control" name="descripcion" defaultValue={selectedExamen.descripcion} />
                                 </div>
                             </form>
                         </div>
