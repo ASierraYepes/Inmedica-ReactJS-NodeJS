@@ -143,8 +143,6 @@ class AgendaTabla extends React.Component {
                             </div>
                         </div>
                     </div>
-                    {/* Modal add*/}
-                
                     {/* Modal edit*/}
                     <ModalEditAgenda selectedHorario={this.state.selectedHorario} ActualizarHorario={this.ActualizarHorario}/>
                 </section>

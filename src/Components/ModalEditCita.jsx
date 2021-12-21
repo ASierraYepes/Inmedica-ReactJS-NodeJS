@@ -44,7 +44,7 @@ export default function ModalEditCita({selectedCita,ActualizarCita}) {
                                     <input type="text" className="form-control" name="fecha" defaultValue={selectedCita.fecha} />
                                 </div>
                                 <div className="form-group">
-                                    <label for="" className="form-label">Fecha</label>
+                                    <label for="" className="form-label">Hora</label>
                                     <input type="text" className="form-control" name="hora" defaultValue={selectedCita.hora} />
                                 </div>
                                 <div className="form-group">
@@ -54,7 +54,6 @@ export default function ModalEditCita({selectedCita,ActualizarCita}) {
                             </form>
                         </div>
                         <div className="modal-footer">
-                            {/* <button type="button" className="btn btn-primary" onClick={""}>Consultar</button> */}
                             <button type="submit" className="btn btn-primary" form="updateForm">Actualizar</button>
                             <button type="button" className="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                         </div>

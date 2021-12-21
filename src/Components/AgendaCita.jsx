@@ -49,8 +49,8 @@ export default function AgendaCita() {
                                 <label for="" className="form-label">Codigo</label>
                                 <input type="text" className="form-control" id="codigo" placeholder="Código de exámen" />
                             </div>
-                            <div className="d-grid gap-2 d-md-block">
-                                <button className="btn btn-primary btn-block" type="button" onClick={grabar_ce}>Agregar</button>
+                            <div className="d-grid gap-2 d-md-block text-center">
+                                <button className="btn btn-primary " type="button" onClick={grabar_ce}>Agregar Cita</button>
                             </div><br />   <br />
                         </form>
                     </div>

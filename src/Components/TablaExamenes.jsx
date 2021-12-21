@@ -1,33 +1,12 @@
 import React from 'react';
 import DataTable from 'react-data-table-component';
-import ModalEditCita from './ModalEditCita';
+import ModalEditExamen from './ModalEditExamen';
 
 
-// const tablaUsuarios = users.users;
-const columnas = ( (EditCitaExamen,EliminarCita) => [
+const columnas = ( (EditExamen,EliminarExamen) => [
     {
         name: "id",
         selector: "_id",
-        sortable: true
-    },
-    {
-        name: "Tipo Documento",
-        selector: "typeDoc",
-        sortable: true
-    },
-    {
-        name: "Documento",
-        selector: "doc",
-        sortable: true
-    },
-    {
-        name: "Fecha",
-        selector: "fecha",
-        sortable: true
-    },
-    {
-        name: "Numero de documento",
-        selector: "hora",
         sortable: true
     },
     {
@@ -36,16 +15,21 @@ const columnas = ( (EditCitaExamen,EliminarCita) => [
         sortable: true
     },
     {
+        name: "Descripcion",
+        selector: "descripcion",
+        sortable: true
+    },
+    {
         cell: (row) =>
             <div>
-                <button onClick={()=>EditCitaExamen(row)} id={ row._id } 
+                <button onClick={()=>EditExamen(row)} id={ row._id } 
                     type="button"
                     className="btn btn-outline-primary" 
                     data-toggle="modal" 
                     data-target="#exampleModaledit">                           
                         <i className="ion-ios-refresh"></i>
                 </button>{" "}
-                <button onClick={()=>EliminarCita(row._id)} id={ [row._id] } 
+                <button onClick={()=>EliminarExamen(row._id)} id={ [row._id] } 
                     className="btn btn-outline-primary">
                         <i className="icon ion-md-trash"></i>
                 </button>
@@ -64,11 +48,11 @@ const paginationOpciones = {
 }
 
 
-class TablaCitas extends React.Component {
+class Tablaexamenes extends React.Component {
 
     state = {
         busquedas: "",
-        selectedCita: {}
+        selectedExamen: {}
     }
     onChange = async e => {
         e.persist();
@@ -76,41 +60,42 @@ class TablaCitas extends React.Component {
         this.filtrarElementos();
     }
 
-    leerCitas = ()=> {
+    leerExamenes = ()=> {
         setTimeout(() => {
-            fetch("http://localhost:9000/citaexamen/listar_ce")
+            fetch("http://localhost:9000/examen/listar_e")
             .then(res => res.json())
-            .then(data => this.setState({ citas: data.citas, citasTabla : data.citas }));
+            .then(data => this.setState({ examenes: data.examenes, examenesTabla : data.examenes }));
         }, 50);
     }
     
-    ActualizarCita = (event) => {
+    ActualizarExamen = (event) => {
         event.preventDefault();
         const data = new FormData(event.target);
-        const cita = {_id: data.get('id'), typeDoc: data.get('typeDoc'),doc: data.get('doc'), fecha: data.get('fecha'), hora: data.get('hora'), codigo: data.get('codigo')} 
-        fetch("http://localhost:9000/citaexamen/actualizar_ce",
+        const user = {_id: data.get('id'),codigo: data.get('codigo'), descripcion: data.get('descripcion')} 
+        fetch("http://localhost:9000/examen/actualizar_e",
             {
             headers: {"content-type":"application/json"},
             method: "POST",
-            body: JSON.stringify(cita)
+            body: JSON.stringify(user)
              })
         .then(dato=>dato.json())
         .then(dato=>alert(dato.msg))
         .catch(error=>alert(error));
-        this.leerCitas();
+        this.leerExamenes();
     };
 
 
-    EditCitaExamen = (cita) => {
-        this.setState({selectedCita: cita})
+    EditExamen = (examenes) => {
+        this.setState({selectedExamen: examenes})
     }
 
-    EliminarCita = (_id) => { 
-        fetch(`http://localhost:9000/citaexamen/eliminar_c/${_id}`, {method: 'DELETE'})
-        this.leerCitas();
+    EliminarExamen = (_id) => {
+        
+        fetch(`http://localhost:9000/examen/eliminar_e/${_id}`, {method: 'DELETE'})
+        this.leerExamenes();
     }
     componentDidMount() {
-        this.leerCitas();
+        this.leerExamenes();
     }
 
 
@@ -136,8 +121,8 @@ class TablaCitas extends React.Component {
                                 <div className="card rounded-1">
                                     <div className="table-responsive">
                                         <DataTable
-                                            columns={columnas (this.EditCitaExamen,this.EliminarCita)}
-                                            data={this.state.citasTabla}
+                                            columns={columnas (this.EditExamen,this.EliminarExamen)}
+                                            data={this.state.examenesTabla}
                                             pagination
                                             paginationComponentOptions={paginationOpciones}
                                             fixedHeader
@@ -155,10 +140,10 @@ class TablaCitas extends React.Component {
                     {/* Modal add*/}
                 
                     {/* Modal edit*/}
-                    <ModalEditCita selectedCita={this.state.selectedCita} ActualizarCita={this.ActualizarCita}/>
+                    <ModalEditExamen selectedExamen={this.state.selectedExamen} ActualizarExamen={this.ActualizarExamen}/>
                 </section>
             </>
         )
     }
 }
-export default TablaCitas;
+export default Tablaexamenes;
