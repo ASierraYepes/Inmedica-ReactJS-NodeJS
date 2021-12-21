@@ -19,7 +19,9 @@ export default function NavbarDashboard() {
                     <Link to="/Examenes">
                     <a href="#" className="d-block text-light p-3 border-0"><i className="icon ion-ios-eye lead mr-2"></i>Exámenes</a>
                     </Link>
+                    <Link to="/Resultados">
                     <a href="#" className="d-block text-light p-3 border-0"><i className="icon ion-md-done-all lead mr-2"></i>Resultados</a>
+                    </Link>
                     <Link to="/Usuarios">
                         <a className="d-block text-light p-3 border-0"><i className="icon ion-md-person  lead mr-2"></i>Usuarios</a>
                     </Link>

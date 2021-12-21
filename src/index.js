@@ -9,6 +9,7 @@ import Dashboard from './Dashboard';
 import Usuarios from './Usuarios';
 import Citas from './Citas';
 import Agenda from './Agenda';
+import Resultados from './Resultados';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -21,6 +22,7 @@ ReactDOM.render(
       <Route path="/Usuarios" element={<Usuarios/>} />
       <Route path="/Examenes" element={<Citas/>} />
       <Route path="/Agenda" element={<Agenda/>} />
+      <Route path="/Resultados" element={<Resultados/>}/>
     </Routes>
   </Router>
 </React.StrictMode>

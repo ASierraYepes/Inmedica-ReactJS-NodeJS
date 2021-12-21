@@ -6,6 +6,7 @@ import Footer from './Components/Footer'
 import NavbarDashboard from './Components/NavbarDashboard'
 import NavUpDashboard from './Components/NavUpDashboard'
 import TablaCitas from './Components/TablaCitas'
+import Tablaexamenes from './Components/TablaExamenes'
 
 export default function Citas() {
     return (
@@ -69,9 +70,25 @@ export default function Citas() {
                                         </div>
                                     </div>
                                 </div>
-                            </section>
+                        </section>
                         </div>
-                        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">Lo que vamos a meter</div>
+                        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                        <section>
+                                <div className="container">
+                                    <div className="row" id="GraficoDash">
+                                        <div className="col-lg-12 my-3 mx-auto">
+                                        <br/>
+                                            <div className="card rounded-1">
+                                                <div className="card-header bg-light">
+                                                    <h6 className="font-weight-bold mb-0">Exámenes</h6>
+                                                </div>
+                                                <Tablaexamenes/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </section>
+                        </div>
                     </div>
  
                 </div>
