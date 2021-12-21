@@ -1,8 +1,29 @@
 import Footer from "./Components/Footer";
 import NavbarInicio from "./Components/NavbarInicio";
+import React, {useState} from "react";
+import emailjs from "emailjs-com";
 
+const Inicio= () => {
+  const frmContact = { userEmail:"", userName:"", emailDetails:"" };
+   const [contact,setContact] = useState(frmContact);
+   const [showMessage, setShowMessage] = useState(false);
+   const handleChange = e => { 
+		const {name,value} = e.target;
+		setContact({...contact,[name]:value}); 
+   };
+   const handleSubmit = e =>{
+	    e.preventDefault();
+	   
+		emailjs.send("service_nog9n68","template_z7nozn4", contact, "user_lHR8bhnKaN4aF2zHDNl5D")
+		.then((response) => {
+				   console.log("SUCCESS!", response.status, response.text);
+				   setContact(frmContact);
+				   setShowMessage(true);
+		}, (err) => {
+				   console.log("FAILED...", err);
+		});  
+  }
 
-function Inicio() {
   return (
     <div>
       <header>
@@ -88,13 +109,38 @@ function Inicio() {
               <div className="col-sm-6">
                 <div className="card" id="Contactanos">
                   <div className="card-body">
+                  {showMessage ? <div className="alert alert-success col-md-12 text-center" role="alert">Correo enviado exitosamente!!</div> : ``}
+
                     <h5 className="card-title"><b>CONTACTANOS</b></h5>
-                    <label for="exampleFormControlInput1">Correo</label>
+                    {/* <label for="exampleFormControlInput1">Correo</label>
                     <input className="form-control" type="email" placeholder="email@example.com"/>
                     <label for="exampleFormControlInput1">Mensaje</label>
                     <textarea className="form-control" type="text" placeholder="Ingrese aqui su mensaje..."></textarea>
                     <br/>
-                    <a href="#" className="btn btn-primary btn-block">Enviar</a>
+                    <a href="#" className="btn btn-primary btn-block">Enviar</a> */}
+
+
+                  <form onSubmit={handleSubmit}>
+                    <div className="pt-2 col-md-12">
+                      <div className="form-group text-left"> <b>Ingrese tu nombre: </b> <br />
+                        <input  required type="text" value={contact.userName} name="userName" onChange={handleChange} className="form-control" placeholder="Ingrese tu Nombre" />
+                      </div>
+                    </div>
+                    <div className="pt-1 col-md-12 ">
+                      <div className="form-group text-left"> <b>Ingrese tu correo: </b> <br />
+                        <input required type="text" value={contact.userEmail} name="userEmail" onChange={handleChange} className="form-control" placeholder="Correo electronico" />
+                      </div>
+                    </div>
+                    <div className="pt-1 col-md-12">
+                      <div className="form-group text-left"> <b>Mensaje: </b> <br />
+                        <textarea required name="emailDetails" onChange={handleChange} className="form-control" placeholder="Escribe tu mensaje" value={contact.emailDetails}></textarea>
+                      </div>
+                    </div>
+                    <div className="pt-1 col-md-12 ">
+                      <button className="btn btn-primary btn-block">Enviar</button>
+                    </div>
+                  </form>
+
                   </div>
                 </div>
               </div>
