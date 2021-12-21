@@ -88,7 +88,7 @@ class AgendaTabla extends React.Component {
         .then(dato=>alert("Horario Actualizado Exitosamente!!"))
         .catch(error=>alert(error));
         this.leerHorarios();
-    };
+    };
 
 
     EditHorario = (horario) => {

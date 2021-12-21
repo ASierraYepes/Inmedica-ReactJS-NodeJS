@@ -26,7 +26,7 @@ const columnas = ( (EditCitaExamen,EliminarCita) => [
         sortable: true
     },
     {
-        name: "Numero de documento",
+        name: "Hora",
         selector: "hora",
         sortable: true
     },
@@ -98,7 +98,7 @@ class TablaCitas extends React.Component {
         .then(dato=>alert(dato.msg))
         .catch(error=>alert(error));
         this.leerCitas();
-    };
+    };
 
 
     EditCitaExamen = (cita) => {
@@ -119,12 +119,6 @@ class TablaCitas extends React.Component {
 
         this.setState({ selectedRows: state.selectedRows });
     };
-
-    /*--------- CRUD ---------*/
-
-    
-    
-    /*--------- FIN CRUD ---------*/
 
     render() {
         return (

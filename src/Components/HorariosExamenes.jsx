@@ -15,7 +15,7 @@ export default function HorariosExamenes() {
         .then(dato=>dato.json())
         .then(dato=>alert(dato.msg))
         .catch(error=>alert(error));
-    };
+    };
     return (
         <>
             <div>
@@ -40,8 +40,8 @@ export default function HorariosExamenes() {
                                 </select>
                             </div>
                             <div className="d-grid gap-2 d-md-block">
-                                <button className="btn btn-primary btn-block" type="button" onClick={grabar_a}>Agregar Horario</button>
-                            </div><br />   <br />
+                                <button className="btn btn-primary btn-block" type="button" onClick={grabar_a}>Agregar horario</button>
+                            </div><br/><br/>
                         </form>
                     </div>
                 </div>

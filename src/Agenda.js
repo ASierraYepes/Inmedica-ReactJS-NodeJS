@@ -18,21 +18,21 @@ export default function Agenda() {
                         <div className="">
                             <div className="row" id="TituloDash">
                                 <div className="col-lg-9 col-md-8">
-                                    <h1 className="font-weight-bold mb-0">Agendas</h1>
+                                    <h1 className="font-weight-bold mb-0">Agenda</h1>
                                 </div>
                             </div>
                         </div>
                     </section>       
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Agendar Horario</button>
+                            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Agendar horario</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Horarios Agendados</button>
+                            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Horarios disponibles</button>
                         </li>
-                        <li class="nav-item" role="presentation">
+                        {/* <li class="nav-item" role="presentation">
                             <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Lo que va 2</button>
-                        </li>
+                        </li> */}
                     </ul>
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -69,7 +69,7 @@ export default function Agenda() {
                                 </div>
                             </section>
                         </div>
-                        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">Lo que vamos a meter</div>
+                        {/* <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">Lo que vamos a meter</div> */}
                     </div>
  
                 </div>

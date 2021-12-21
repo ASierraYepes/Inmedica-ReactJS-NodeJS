@@ -4,6 +4,7 @@ import ModalAdd from './ModalAdd';
 import ModalEdit from './ModalEdit';
 
 
+
 // const tablaUsuarios = users.users;
 const columnas = ( (handleEdit,handleDelete) => [
     {
@@ -120,7 +121,7 @@ class DataTableUser extends React.Component {
         .then(dato=>alert("Registro Actualizado Exitosamente!!"))
         .catch(error=>alert(error));
         this.leerUsuarios();
-    };
+    };
 
     // handleAdd = (event) => {
     //     event.preventDefault();
@@ -156,19 +157,13 @@ class DataTableUser extends React.Component {
         this.setState({ selectedRows: state.selectedRows });
     };
 
-    /*--------- CRUD ---------*/
-
-    
-    
-    /*--------- FIN CRUD ---------*/
-
     render() {
         return (
             <>
                 <section>
                     <div className="container">
                         <div className="row" id="GraficoDash">
-                            <div className="col-lg-12 my-3">
+                            <div className="col-lg-13 my-2">
                                 <div className="card rounded-1">
                                     <div>
                                         <button type="button" onClick={" "}
