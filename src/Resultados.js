@@ -43,7 +43,7 @@ export default function Resultados() {
                                             <br/>
                                             <div className="card rounded-1">
                                                 <div className="card-header bg-light">
-                                                    <h6 className="font-weight-bold mb-0">Añadir Resultado</h6>
+                                                    <h6 className="font-weight-bold mb-0">Añadir resultado</h6>
                                                 </div>
                                                 <ResultadoExamen/>
                                             </div>

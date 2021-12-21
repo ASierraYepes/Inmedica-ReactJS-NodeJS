@@ -19,7 +19,7 @@ export default function NavbarInicio() {
                                 <a className="nav-link active" data-bss-hover-animate="pulse" href="#">Inicio</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link active" data-bss-hover-animate="pulse" href="#Comunicado">Informacion y Comunicados</a>
+                                <a className="nav-link active" data-bss-hover-animate="pulse" href="#Comunicado">Informacion y comunicados</a>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link active" data-bss-hover-animate="pulse" href="#Contactanos">Contacto</a>
