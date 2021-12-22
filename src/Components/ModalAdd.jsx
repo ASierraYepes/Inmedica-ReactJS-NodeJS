@@ -3,10 +3,6 @@ import React from 'react'
 export default function ModalAdd(leerUsuarios) {
     const host="http://localhost:9000/crudDash/";
     function agregar(){
-        //Capturar los datos de las cajas de textos
-        //Petición Ajax con fetch para consumir la Api
-        //Obtener los datos 
-        //Mostrar una confirmación de que fueron guardados en caso efectivo o confirmación de error 
         const typeDoc = document.getElementById("typeDoc").value;
         const doc = document.getElementById("doc").value;
         const nom = document.getElementById("nom").value;

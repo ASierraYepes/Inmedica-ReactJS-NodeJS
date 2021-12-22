@@ -1,5 +1,6 @@
 import React from 'react';
 import DataTable from 'react-data-table-component';
+import ModalAddExamen from './ModalAddExamen';
 import ModalEditExamen from './ModalEditExamen';
 
 
@@ -70,11 +71,11 @@ class Tablaexamenes extends React.Component {
     ActualizarExamen = (event) => {
         event.preventDefault();
         const data = new FormData(event.target);
-        const user = {_id: data.get('id'),codigo: data.get('codigo'), descripcion: data.get('descripcion')} 
+        const examen = {_id: data.get('id'),codigo: data.get('codigo'), descripcion: data.get('descripcion')} 
         fetch("http://localhost:9000/examen/actualizar_e",{
             headers: {"content-type":"application/json"},
             method: "POST",
-            body: JSON.stringify(user)
+            body: JSON.stringify(examen)
              })
         .then(dato=>dato.json())
         .then(dato=>alert(dato.msg))
@@ -83,13 +84,13 @@ class Tablaexamenes extends React.Component {
     };
 
 
-    EditExamen = (examenes) => {
-        this.setState({selectedExamen: examenes})
+    EditExamen = (examen) => {
+        this.setState({selectedExamen: examen})
     }
 
     EliminarExamen = (_id) => {
-        
         fetch(`http://localhost:9000/examen/eliminar_e/${_id}`, {method: 'DELETE'})
+        .then(dato=>alert("Examen eliminado exitosamente!!"))
         this.leerExamenes();
     }
     componentDidMount() {
@@ -111,6 +112,14 @@ class Tablaexamenes extends React.Component {
                         <div className="row" id="GraficoDash">
                             <div className="col-lg-12 my-3">
                                 <div className="card rounded-1">
+                                    <div>
+                                        <button type="button" onClick={" "}
+                                            className="btn btn-outline-primary modaladdexam" 
+                                            data-toggle="modal" 
+                                            data-target="#exampleModaladd">
+                                                <i className="ion-md-add"></i>
+                                        </button>
+                                    </div>
                                     <div className="table-responsive">
                                         <DataTable
                                             columns={columnas (this.EditExamen,this.EliminarExamen)}
@@ -129,6 +138,7 @@ class Tablaexamenes extends React.Component {
                             </div>
                         </div>
                     </div>
+                    <ModalAddExamen leerExamenes={this.leerExamenes}/>
 
                     <ModalEditExamen selectedExamen={this.state.selectedExamen} ActualizarExamen={this.ActualizarExamen}/>
                 </section>

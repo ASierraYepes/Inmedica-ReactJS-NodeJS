@@ -133,7 +133,7 @@ const Inicio= () => {
                     </div>
                     <div className="pt-1 col-md-12">
                       <div className="form-group text-left"> <b>Mensaje: </b> <br />
-                        <textarea required name="emailDetails" onChange={handleChange} className="form-control" placeholder="Escribe tu mensaje" value={contact.emailDetails}></textarea>
+                        <textarea required name="emailDetails" rows="7" onChange={handleChange} className="form-control" placeholder="Escribe tu mensaje" value={contact.emailDetails}></textarea>
                       </div>
                     </div>
                     <div className="pt-1 col-md-12 ">

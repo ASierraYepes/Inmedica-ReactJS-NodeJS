@@ -144,6 +144,7 @@ class DataTableUser extends React.Component {
 
     handleDelete = (doc) => {
         fetch(`http://localhost:9000/crudDash/eliminar/${doc}`, {method: 'DELETE'})
+        .then(dato=>alert("Usuario eliminado exitosamente!!"))
         this.leerUsuarios();
     }
     componentDidMount() {
@@ -178,7 +179,7 @@ class DataTableUser extends React.Component {
                                         <h6 className="font-weight-bold mb-0">Tabla general de usuarios registrados</h6>
                                     </div>
                                     <div className="table-responsive">
-                                        <div className="barraBusqueda">
+                                        {/* <div className="barraBusqueda">
                                             <input type="text"
                                                 placeholder="Filtrar"
                                                 className="form-control"
@@ -186,7 +187,7 @@ class DataTableUser extends React.Component {
                                                 value={this.state.busqueda}
                                                 onChange={this.onChange}
                                             />
-                                        </div>
+                                        </div> */}
       
                                         <DataTable
                                             columns={columnas (this.handleEdit,this.handleDelete)}

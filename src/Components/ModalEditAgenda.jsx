@@ -29,7 +29,7 @@ export default function ModalEditAgenda({selectedHorario,ActualizarHorario}) {
                                     <input type="text" className="form-control" name="fecha" defaultValue={selectedHorario.fecha} />
                                 </div>
                                 <div className="form-group">
-                                    <label for="" className="form-label">Fecha</label>
+                                    <label for="" className="form-label">Hora</label>
                                     <input type="text" className="form-control" name="hora" defaultValue={selectedHorario.hora} />
                                 </div>
                                 <div className="form-group ">
