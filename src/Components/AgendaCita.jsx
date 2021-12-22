@@ -24,6 +24,8 @@ export default function AgendaCita() {
                 <div className="row mb-2 text-dark">
                     <div className="col-md-12">
                         <form>
+                            <div className="form-group">
+                            <label for="" className="form-label">Tipo de Documento</label>
                             <select id="typeDoc" className="form-control">
                             <option selected>Elija el Tipo de documento</option>
                                 <option value="Cedula de Ciudadania">Cedula ciudadania</option>
@@ -32,7 +34,7 @@ export default function AgendaCita() {
                                 <option value="DNI(Pasaporte)">DNI(Pasaporte)</option>
                                 <option value="Cedula Extranjeria">Cedula extranjeria</option>
                             </select>
-                            <br />
+                            </div>
                             <div className="form-group">
                                 <label for="" className="form-label">No. documento</label>
                                 <input type="number" className="form-control" id="doc" placeholder="No. Documento" />

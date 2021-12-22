@@ -89,8 +89,8 @@ class Tablaexamenes extends React.Component {
     }
 
     EliminarExamen = (_id) => {
-        
         fetch(`http://localhost:9000/examen/eliminar_e/${_id}`, {method: 'DELETE'})
+        .then(dato=>alert("Examen eliminado exitosamente!!"))
         this.leerExamenes();
     }
     componentDidMount() {

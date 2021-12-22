@@ -107,6 +107,7 @@ class TablaCitas extends React.Component {
 
     EliminarCita = (_id) => { 
         fetch(`http://localhost:9000/citaexamen/eliminar_c/${_id}`, {method: 'DELETE'})
+        .then(dato=>alert("Cita eliminada exitosamente!!"))
         this.leerCitas();
     }
     componentDidMount() {

@@ -27,11 +27,11 @@ export default function ModalEdit({selectedUser,handleSubmit}) {
                                 <div className="form-group ">
                                     <label for="" className="form-label">Tipo de Documento</label>
                                     <select name="typeDoc" className="form-control">
-                                        <option selected={selectedUser.rol==="Cedula de Ciudadania"} value="Cedula de Ciudadania">Cedula Ciudadania</option>
-                                        <option selected={selectedUser.rol==="Tarjeta de Identidad"} value="Tarjeta de Identidad">Tarjeta de Identidad</option>
-                                        <option selected={selectedUser.rol==="Registro Civil"} value="Registro Civil">Registro Civil</option>
-                                        <option selected={selectedUser.rol==="DNI(Pasaporte)"} value="DNI(Pasaporte)">DNI(Pasaporte)</option>
-                                        <option selected={selectedUser.rol==="Cedula Extranjeria"} value="Cedula Extranjeria">Cedula Extranjeria</option>
+                                        <option selected={selectedUser.typeDoc==="Cedula de Ciudadania"} value="Cedula de Ciudadania">Cedula Ciudadania</option>
+                                        <option selected={selectedUser.typeDoc==="Tarjeta de Identidad"} value="Tarjeta de Identidad">Tarjeta de Identidad</option>
+                                        <option selected={selectedUser.typeDoc==="Registro Civil"} value="Registro Civil">Registro Civil</option>
+                                        <option selected={selectedUser.typeDoc==="DNI(Pasaporte)"} value="DNI(Pasaporte)">DNI(Pasaporte)</option>
+                                        <option selected={selectedUser.typeDoc==="Cedula Extranjeria"} value="Cedula Extranjeria">Cedula Extranjeria</option>
                                     </select>
                                 </div>
                                 <div className="form-group">

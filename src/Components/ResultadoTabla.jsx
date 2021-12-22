@@ -1,41 +1,46 @@
 import React from 'react';
 import DataTable from 'react-data-table-component';
-import ModalEditAgenda from './ModalEditAgenda';
+import ModalEditResultado from './ModalEditResultado';
 
 
 // const tablaUsuarios = users.users;
-const columnas = ( (EditHorario,EliminarHorario) => [
+const columnas = ( (EditResultado,EliminarResultado) => [
     {
         name: "id",
         selector: "_id",
         sortable: true
     },
     {
-        name: "Fecha",
-        selector: "fecha",
+        name: "Tipo Documento",
+        selector: "typeDoc",
         sortable: true
     },
     {
-        name: "Hora",
-        selector: "hora",
+        name: "Documento",
+        selector: "doc",
         sortable: true
     },
     {
-        name: "Estado",
-        selector: "estado",
+        name: "Codigo Exámen",
+        selector: "codigo",
+        sortable: true
+    },
+    {
+        name: "Resultado y Comentarios",
+        selector: "resultado",
         sortable: true
     },
     {
         cell: (row) =>
             <div>
-                <button onClick={()=>EditHorario(row)} id={ row._id } 
+                <button onClick={()=>EditResultado(row)} id={ row._id } 
                     type="button"
                     className="btn btn-outline-primary" 
                     data-toggle="modal" 
                     data-target="#exampleModaledit">                           
                         <i className="ion-ios-refresh"></i>
                 </button>{" "}
-                <button onClick={()=>EliminarHorario(row._id)} id={ [row._id] } 
+                <button onClick={()=>EliminarResultado(row._id)} id={ [row._id] } 
                     className="btn btn-outline-primary">
                         <i className="icon ion-md-trash"></i>
                 </button>
@@ -54,11 +59,11 @@ const paginationOpciones = {
 }
 
 
-class AgendaTabla extends React.Component {
+class ResultadoTabla extends React.Component {
 
     state = {
         busquedas: "",
-        selectedHorario: {}
+        selectedResultado: {}
     }
     onChange = async e => {
         e.persist();
@@ -66,42 +71,42 @@ class AgendaTabla extends React.Component {
         this.filtrarElementos();
     }
 
-    leerHorarios = ()=> {
+    leerResultado = ()=> {
         setTimeout(() => {
-            fetch("http://localhost:9000/agenda/listar_a")
+            fetch("http://localhost:9000/resultadoexamen/listar_r")
             .then(res => res.json())
-            .then(data => this.setState({ horarios: data.horarios, agendaTabla : data.horarios }));
+            .then(data => this.setState({ resultados: data.resultados, agendaTabla : data.resultados }));
         }, 50);
         
     }
-    ActualizarHorario = (event) => {
+    ActualizarResultado = (event) => {
         event.preventDefault();
         const data = new FormData(event.target);
-        const user = {_id: data.get('id'),fecha: data.get('fecha'), hora: data.get('hora'), estado: data.get('estado')} 
-        fetch("http://localhost:9000/agenda/actualizar_a",
+        const resultado = {_id: data.get('id'),typeDoc: data.get('typeDoc'), doc: data.get('doc'), codigo: data.get('codigo'),resultado: data.get('resultado')} 
+        fetch("http://localhost:9000/resultadoexamen/actualizar_r",
             {
             headers: {"content-type":"application/json"},
             method: "POST",
-            body: JSON.stringify(user)
+            body: JSON.stringify(resultado)
              })
         .then(dato=>dato.json())
-        .then(dato=>alert("Horario Actualizado Exitosamente!!"))
+        .then(dato=>alert("Resultado actualizado exitosamente!!"))
         .catch(error=>alert(error));
-        this.leerHorarios();
+        this.leerResultado();
     };
 
 
-    EditHorario = (horario) => {
-        this.setState({selectedHorario: horario})
+    EditResultado = (resultado) => {
+        this.setState({selectedResultado: resultado})
     }
 
-    EliminarHorario = (_id) => {
-        fetch(`http://localhost:9000/agenda/eliminar_a/${_id}`, {method: 'DELETE'})
-        .then(dato=>alert("Horario eliminado exitosamente!!"))
-        this.leerHorarios();
+    EliminarResultado = (_id) => {
+        fetch(`http://localhost:9000/resultadoexamen/eliminar_r/${_id}`, {method: 'DELETE'})
+        .then(dato=>alert("Resultado eliminado exitosamente!!"))
+        this.leerResultado();
     }
     componentDidMount() {
-        this.leerHorarios();
+        this.leerResultado();
     }
 
 
@@ -127,7 +132,7 @@ class AgendaTabla extends React.Component {
                                 <div className="card rounded-1">
                                     <div className="table-responsive">
                                         <DataTable
-                                            columns={columnas (this.EditHorario,this.EliminarHorario)}
+                                            columns={columnas (this.EditResultado,this.EliminarResultado)}
                                             data={this.state.agendaTabla}
                                             pagination
                                             paginationComponentOptions={paginationOpciones}
@@ -144,10 +149,10 @@ class AgendaTabla extends React.Component {
                         </div>
                     </div>
                     {/* Modal edit*/}
-                    <ModalEditAgenda selectedHorario={this.state.selectedHorario} ActualizarHorario={this.ActualizarHorario}/>
+                    <ModalEditResultado selectedResultado={this.state.selectedResultado} ActualizarResultado={this.ActualizarResultado}/>
                 </section>
             </>
         )
     }
 }
-export default AgendaTabla;
+export default ResultadoTabla;
